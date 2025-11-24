@@ -126,190 +126,197 @@
 ]
 
 
+%%%%%%%% Título e autoria %%%%%%%%
+
 \posterbox[titlebox]{name=titlebox, below=top, column=1, span=12}{
-    An example poster using \LaTeX{}\\
-    by CCSL-IME/USP
+    \huge
+    Contribuindo com o QGIS\par
+    \vspace{6pt}
+    \large
+    Experiências no desenvolvimento de software livre para Sistemas de Informação Geográfica
 }
 
 \posterbox[footerbox]{name=footerbox, above=bottom, column=1, span=12}{
     \large
-    ccsl.ime.usp.br\par
-    \vspace{4pt}
-    \small\ttfamily
-    ccsl@ime.usp.br\par
-    \vspace{4pt}
+    Ana Lívia Rüegger Saldanha\par
+    \vspace{2pt}
+    \small
+    Orientadora: Juliana Orro Marquez (UNIFESP)\par
+    Coorientador: Paulo Meirelles (IME-USP)\par
+    \vspace{6pt}
     \footnotesize\rmfamily
     \textcolor{imesoftblue!30!white}
-      {Department of Computer Science --- University of São Paulo}\relax
-    \footimage{\includegraphics[width=13cm]{ccsl-logo}}
+      {Trabalho de Formatura Supervisionado Voltado à Extensão (MAC0500)}\relax
+    \footimage{%
+    \includegraphics[width=13cm]{ime-logo}%
+    \hspace{2cm}%
+    \includegraphics[height=5cm]{figuras/qr-github-footer}%
+    }
 }
 
 
-\posterbox[adjusted title = The CCSL logo (full width)]
-          {name=widelogo, below=titlebox, column=1, span=12}{
+%%%%%%%% Introdução %%%%%%%%
 
-    \centering
-    \includegraphics[width=.95\textwidth]{ccsl-logo}
+\posterbox[adjusted title = Proposta, equal height group = toprow]
+          {name=resumo, below=titlebox, column=1, span=4}{
+    \small
+    Contribuir com o QGIS, um dos principais projetos de software livre para Sistemas de Informação Geográfica (SIG), a partir da identificação de uma necessidade real de usuários da plataforma na universidade e comunidade científica.
 }
 
-
-%%%%%%%% Quatro colunas com "equal height group" %%%%%%%%
-
-\posterbox[adjusted title = One fourth width,
-          smallmargins, equal height group = quartos]
-          {name=quarterlogoLeft, below=widelogo, column=1, span=3}{
-
-    \centering
-    \includegraphics[width=.9\textwidth]{ccsl-logo}
-}
-
-\posterbox[adjusted title = One fourth width,
-          smallmargins, equal height group = quartos]
-          {below=widelogo, column=4, span=3}{
-
-    \centering
-    This block has the same height as the logo
-
-}
-
-\posterbox[adjusted title = One fourth width,
-          smallmargins, equal height group = quartos]
-          {below=widelogo, column=7, span=3}{
-
-    \centering
-    And so does this
-}
-
-\posterbox[adjusted title = One fourth width,
-          smallmargins, equal height group = quartos]
-          {below=widelogo, column=10, span=3}{
-
-    \centering
-    Thanks to\\
-    \texttt{equal height group}
-}
-
-
-%%%%%%%% Duas colunas %%%%%%%%
-
-% Como temos 2 caixas à esquerda e uma caixa à direita, não podemos
-% simplesmente usar "equal height group" aqui, então definimos
-% manualmente a altura das caixas de maneira que as duas colunas
-% tenham o mesmo tamanho.
-
-%%% Esquerda
-\posterbox[adjusted title = Pangrams (half width)]
-          {name=pangramdef, below=quarterlogoLeft,
-           column=1, span=6, rowspan=.9}{
-
+\posterbox[adjusted title = Contexto, equal height group = toprow]
+          {name=contexto, below=titlebox, column=5, span=4}{
+    \small
     \begin{itemize}
-      \item A \textcolor{imered}{pangram} is a sentence using
-            every letter of a given alphabet at least once.
-      \item Pangrams have been used to:
-
-      \begin{itemize}
-        \item display typefaces
-        \item test equipment
-        \item develop skills in handwriting, calligraphy, and keyboarding
-      \end{itemize}
+        \item Crescente uso de \textbf{Gêmeos Digitais} e ambientes imersivos (VR) para gestão pública e análise de riscos (ex: inundações)
+        \item Necessidade de converter dados geoespaciais reais (MDE em GeoTIFF) para ambientes 3D virtuais
     \end{itemize}
 }
 
-\posterbox[adjusted title = Examples of pangrams (half width)]
-          {below=pangramdef, column=1, span=6, rowspan=1.2}{
-
+\posterbox[adjusted title = Problemas, equal height group = toprow]
+          {name=problemas, below=titlebox, column=9, span=4}{
+    \small
     \begin{itemize}
-      \item In English
-
-      \begin{itemize}
-        \item A quick brown fox jumps over the lazy dog
-        \item Sphinx of black quartz, judge my vow
-        \item How vexingly quick daft zebras jump
-        \item Pack my box with five dozen liquor jugs
-      \end{itemize}
-
-      \item In Portuguese
-
-      \begin{itemize}
-        \item Vejo xá gritando que fez show sem playback
-        \item Vi que ex-janota gordo fez show com playback
-        \item Já fiz vinho com toque de kiwi para belga sexy
-        \item Vejo galã sexy pôr quinze kiwis à força em baú achatado
-      \end{itemize}
+        \item Processo atual: \textbf{manual}, exige linhas de comando complexas com múltiplos parâmetros técnicos e conversões intermediárias
+        \item Barreira técnica para pesquisadores não especializados em computação
     \end{itemize}
 }
 
-%%% Direita
-\posterbox[adjusted title = The IME/USP logo (half width)]
-          {name=halflogo, below=quarterlogoLeft,
-           column=7, span=6, rowspan=2.1}{
-
-    \centering
-    \includegraphics[width=\textwidth,trim=0 0 70 0,clip]{ime-logo}\par
+\posterbox[adjusted title = Objetivo]
+          {name=objetivo, below=resumo, column=1, span=12}{
+    \small
+    Desenvolver uma ferramenta para conversão de Modelos Digitais de Elevação (MDE) no formato GeoTIFF para o formato RAW compatível com Unity, a fim de facilitar a utilização de dados reais na construção de terrenos tridimensionais.
 }
 
 
-%%%%%%% Colunas assimétricas (2/3 + 1/3) %%%%%%%%
+%%%%%%%% Prova de Conceito (definida primeiro para referência) %%%%%%%%
 
-%%% Esquerda. Como usamos "between", a altura desta caixa
-%             é definida pela posição das outras duas.
-\posterbox[adjusted title = Bibliography (assimetrical
-           columns -- two thirds width), smallmargins]
-          {name=bibbox, between=halflogo and footerbox, column=1, span=8}{
+% Constantes para imagens
+\newcommand{\alturaimagem}{9cm}       % Altura padrão das imagens na prova de conceito
+\newcommand{\separacaoimagens}{1.5cm} % Espaçamento entre as imagens (entre bordas)
+\newcommand{\espacolegenda}{0.3cm}    % Espaçamento entre imagem e legenda
 
-    \nocite{FSF:GNU-GPL, MenaChalco08, biblatex,
-            waz:09, alves03:simi, carlis:09}
-    \printbibliography
+% Definir "prova" primeiro para poder ser referenciada
+\posterbox[adjusted title = Prova de Conceito]
+          {name=prova, above=footerbox, column=1, span=12}{
+    \centering
+    \vspace{8pt}
+    \begin{tikzpicture}[auto]
+        \usetikzlibrary{positioning}
+        % Nó 0: Plugin Instalado
+        \node[inner sep=0pt] (plugin_instalado) {
+            \includegraphics[height=\alturaimagem]{figuras/poster/0_plugin_info}
+        };
+        \node[below=\espacolegenda of plugin_instalado, font=\small\bfseries] {Plugin Instalado};
+        
+        % Nó 1: GeoTIFF
+        \node[inner sep=0pt, right=\separacaoimagens of plugin_instalado] (geotiff) {
+            \includegraphics[height=\alturaimagem]{figuras/poster/1_geotiff}
+        };
+        \node[below=\espacolegenda of geotiff, font=\small\bfseries] {MDE em GeoTIFF};
+        
+        % Nó 2: Plugin QGIS
+        \node[inner sep=0pt, right=\separacaoimagens of geotiff] (plugin) {
+            \includegraphics[height=\alturaimagem]{figuras/poster/2_plugin_dialog}
+        };
+        \node[below=\espacolegenda of plugin, font=\small\bfseries] {Processamento};
+        
+        % Nó 3: Logs de conversão
+        \node[inner sep=0pt, right=\separacaoimagens of plugin] (logs) {
+            \includegraphics[height=\alturaimagem]{figuras/poster/3_logs}
+        };
+        \node[below=\espacolegenda of logs, font=\small\bfseries] {Logs de conversão};
+
+        % Nó 4: Terreno 3D
+        \node[inner sep=0pt, right=\separacaoimagens of logs] (terreno) {
+            \includegraphics[height=\alturaimagem]{figuras/poster/4_terrain}
+        };
+        \node[below=\espacolegenda of terreno, font=\small\bfseries] {Terreno 3D (Unity)};
+        
+        % Setas finas com numeração
+        \draw[->, thin, >=stealth, line width=0.5pt] (plugin_instalado.east) -- node[above, font=\tiny] {\textbf{1}} (geotiff.west);
+        \draw[->, thin, >=stealth, line width=0.5pt] (geotiff.east) -- node[above, font=\tiny] {\textbf{2}} (plugin.west);
+        \draw[->, thin, >=stealth, line width=0.5pt] (plugin.east) -- node[above, font=\tiny] {\textbf{3}} (logs.west);
+        \draw[->, thin, >=stealth, line width=0.5pt] (logs.east) -- node[above, font=\tiny] {\textbf{4}} (terreno.west);
+    \end{tikzpicture}
+    
+    \vspace{10pt}
+    \small
+    (1) Após instalar o plugin, o usuário seleciona camada raster no QGIS →
+    (2) Através de uma interface simplificada, o usuário define o arquivo de saída →
+    (3) Plugin processa automaticamente (recorte, normalização 16-bit, detecção de padding, cálculo de dimensões), gera arquivo .raw compatível e apresenta logs de conversão, incluindo parâmetros sugeridos para importação no Unity →
+    (4) O usuário importa o arquivo .raw no Unity, com as configurações sugeridas, e visualiza o terreno 3D.
+    \vspace{8pt}
 }
 
-%%% Direita, acima; aqui, ajustamos as margens manualmente
-\posterbox[adjusted title = A Table (one third width),
-          top=.5\baselineskip, bottom=.5\baselineskip]
-          {name=tablebox, below=halflogo, column=9, span=4}{
 
-    \centering
-    \singlespacing\vspace{-\baselineskip} % \singlespacing adiciona uma linha
-    \begin{tabular}{ccl}
-      \toprule
-      Code        & Abbreviation & Name       \\
-      \midrule
-      \texttt{A}  & Ala          & Alanine    \\
-      \texttt{C}  & Cys          & Cysteine   \\
-      \texttt{W}  & Trp          & Tryptophan \\
-      \texttt{Y}  & Tyr          & Tyrosine   \\
-      \bottomrule
-    \end{tabular}
+%%%%%%%% Processamento e Próximos passos %%%%%%%%
+
+\posterbox[adjusted title = Próximos passos]
+          {name=proximos-passos, above=prova, column=7, span=6}{
+    \small
+    Publicar o plugin no \textbf{repositório oficial de plugins do QGIS}, tornando-o disponível para toda a comunidade de usuários da plataforma através da interface nativa de gerenciamento de plugins.
 }
 
-%%% Direita, abaixo. Como usamos "between", a altura desta caixa
-%                    é definida pela posição das outras duas.
-\posterbox[adjusted title = Sponsors (one third width),
-          colframe = imeyellow, smallmargins]
-          {between=tablebox and footerbox, column=9, span=4}{
+\posterbox[adjusted title = Processamento]
+          {name=processamento, between=objetivo and proximos-passos, column=7, span=6}{
+    \small
+    Utilizando as ferramentas da \textbf{GDAL/OGR}, o plugin automatiza o processo de conversão para o formato RAW compatível com Unity, incluindo:
+    \begin{itemize}
+        % \item Recorte e resolução compatível com Unity;
+        \item Normalização 16-bit preservando a faixa de elevação;
+        \item Detecção e exclusão de padding/NoData;
+        \item Cálculo de dimensões corretas (X, Y, Z) considerando sistemas de coordenadas (geográfico vs. projetado).
+    \end{itemize}
+}
 
+
+%%%%%%%% Solução %%%%%%%%
+
+\posterbox[adjusted title = Solução]
+          {name=solucao1, between=objetivo and prova, column=1, span=6}{
+    \vspace{12pt}
+    \normalsize
+    \begin{minipage}{0.08\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/icon}
+    \end{minipage}%
+    \hspace{1cm}%
+    \begin{minipage}{0.85\textwidth}
+        \textbf{Unity Terrain Exporter\\}
+        Plugin QGIS (Processing Toolbox)
+    \end{minipage}
+
+    \vspace{22pt}
+    \small
+    Uma das maiores vantagens do QGIS é sua \textbf{arquitetura extensível} por meio de \textbf{plugins}, que permite a criação de novas funcionalidades para o software de maneira flexível e personalizada, porém sem a necessidade de alterar o código-fonte do core do software.
+    
+    \vspace{16pt}
+    \begin{itemize}
+        \item Desenvolvido em Python usando PyQGIS API
+        \item Utiliza a Geospatial Data Abstraction Library (GDAL/OGR) para processamento de dados geoespaciais
+        \item Integrado ao QGIS Processing Framework
+        \item Licenciado sob GPL-3.0
+    \end{itemize}
+    
+    \vspace{12pt}
     \centering
-    % Em um poster ou apresentação, normalmente basta usar \includegraphics
-    % ou \begin{tabular}, como foi feito mais acima. Só é necessário usar
-    % \begin{figure} ou \begin{table} se você quiser acrescentar legendas
-    % ou usar subfiguras. Nesses casos, [H] é obrigatório com beamer e com
-    % tcolorbox. Uma outra opção para inserir legendas é usar \captionof.
-    \begin{figure}[H]
-      \begin{subfigure}[c]{.3\textwidth}
+    %% Logo do QGIS
+    \begin{minipage}[t]{0.3\textwidth}
         \centering
-        %\raisebox{.0972\baselineskip}{\includegraphics[height=.927\baselineskip]{fapesp-logo}}
-        \includegraphics[width=.9\textwidth]{ccsl-logo}
-      \end{subfigure}
-      \begin{subfigure}[c]{.3\textwidth}
+        \raisebox{0.45cm}{\includegraphics[height=1.2cm]{figuras/qgis-logo}}
+    \end{minipage}%
+    \raisebox{0.6cm}{$\rightarrow$}%
+    %% Logo da GDAL
+    \begin{minipage}[t]{0.3\textwidth}
         \centering
-        %\raisebox{-.53496\baselineskip}{\includegraphics[height=2.16\baselineskip]{capes-logo}}
-        \includegraphics[width=.9\textwidth]{ccsl-logo}
-      \end{subfigure}
-      \begin{subfigure}[c]{.3\textwidth}
+        \raisebox{-0.4cm}{\includegraphics[height=3cm]{figuras/gdal-logo}}
+    \end{minipage}%
+    \raisebox{0.6cm}{$\rightarrow$}%
+    %% Logo do Unity
+    \begin{minipage}[t]{0.3\textwidth}
         \centering
-        %\includegraphics[height=1.08\baselineskip]{cnpq-logo}
-        \includegraphics[width=.9\textwidth]{ccsl-logo}
-      \end{subfigure}
-    \end{figure}
+        \includegraphics[height=2cm]{figuras/unity-logo}
+    \end{minipage}
 }
 
 \end{tcbposter}
