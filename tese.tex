@@ -91,47 +91,48 @@
 % Estes comandos definem o título e autoria do trabalho e devem sempre ser
 % definidos, pois além de serem utilizados para criar a capa, também são
 % armazenados nos metadados do PDF. O subtítulo é opcional.
-\title{Título do trabalho}[um subtítulo]
-\translatedtitle{Title of the document}[a subtitle]
+\title{Contribuindo com o QGIS}[Experiências no desenvolvimento de software livre para Sistemas de Informação Geográfica]
+\translatedtitle{Contributing to QGIS}[Experiences in developing free software for Geographic Information Systems]
 
-\author[fem]{Nome Completo}
+\author[fem]{Ana Lívia Rüegger Saldanha}
 
 \def\profa{Prof\kern.02em.\kern-.07emª\kern.07em}
 \def\dra{Dr\kern-.04em.\kern-.11emª\kern.07em}
 
-% Para TCCs, este comando define o supervisor
-\orientador[fem]{\profa{} \dra{} Fulana de Tal}
+% Para TCCs, este comando define o orientador
+\orientador[fem]{Juliana Orro Marquez}
 
 % Se não houver, remova; se houver mais de um, basta
 % repetir o comando quantas vezes forem necessárias
-\coorientador{Prof. Dr. Ciclano de Tal}
-\coorientador[fem]{\profa{} \dra{} Beltrana de Tal}
+\coorientador{Prof. Dr. Paulo Meirelles}
 
-\banca{
-  \profa{} \dra{} Fulana de Tal (orientadora) -- IME-USP [sem ponto final],
-  % Em inglês, não há o "ª"
-  %Prof. Dr. Fulana de Tal (advisor) -- IME-USP [sem ponto final],
-  Prof. Dr. Ciclano de Tal -- IME-USP [sem ponto final],
-  \profa{} \dra{} Convidada de Tal -- IMPA [sem ponto final],
-}
+% Não há banca para este TCC
+%\banca{
+%  \profa{} \dra{} Juliana Orro Marquez (orientadora) -- UNIFESP [sem ponto final],
+%  % Em inglês, não há o "ª"
+%  %Prof. Dr. Juliana Orro Marquez (advisor) -- UNIFESP [sem ponto final],
+%  Prof. Dr. Paulo Meirelles (coorientador) -- IME-USP [sem ponto final],
+%  % Adicionar membros da banca aqui quando definidos
+%}
 
 % A página de rosto da versão para depósito (ou seja, a versão final
 % antes da defesa) deve ser diferente da página de rosto da versão
 % definitiva (ou seja, a versão final após a incorporação das sugestões
 % da banca).
 \tipotese{
-  mestrado,
+  %mestrado,
   %doutorado,
-  %tcc,
+  tcc,
   %definitiva, % É a versão para defesa ou a versão definitiva?
   %quali, % É qualificação?
   programa={Ciência da Computação},
 }
 
-\defesa{
-  local={São Paulo},
-  data=2017-08-10, % YYYY-MM-DD
-}
+% Não há defesa para este TCC
+%\defesa{
+%  local={São Paulo},
+%  data=2017-08-10, % YYYY-MM-DD
+%}
 
 % Se não houve bolsa, remova
 %
@@ -155,8 +156,9 @@
 %
 %\apoio{During the development if this work, the author received\\
 %      financial support from FAPESP -- grant \#aaaa/nnnnn-d}
-\apoio{Durante o desenvolvimento deste trabalho o autor
-       recebeu auxílio financeiro da XXXX}
+% Se houver apoio financeiro, descomente e preencha acima
+%\apoio{Durante o desenvolvimento deste trabalho o autor
+%       recebeu auxílio financeiro da XXXX}
 
 % A licença do seu trabalho. Use CC-BY, CC-BY-NC, CC-BY-ND, CC-BY-SA,
 % CC-BY-NC-SA ou CC-BY-NC-ND para escolher a licença Creative Commons
@@ -208,8 +210,8 @@
 %%%%%%%%%%%%%%%% DEDICATÓRIA, AGRADECIMENTOS, RESUMO/ABSTRACT %%%%%%%%%%%%%%%%%%
 
 \begin{dedicatoria}
-Esta seção é opcional e fica numa página separada; ela pode ser usada para
-uma dedicatória ou epígrafe.
+    Esta seção é opcional e fica numa página separada; ela pode ser usada para
+    uma dedicatória ou epígrafe.
 \end{dedicatoria}
 
 % Reinicia o contador de páginas (a próxima página recebe o número "i") para
@@ -264,23 +266,23 @@ texto texto texto texto. Texto opcional.
 \disablenewpage{\chapter*{Lista de abreviaturas}}
 
 \begin{tabular}{rl}
-   CFT & Transformada contínua de Fourier (\emph{Continuous Fourier Transform})\\
-   DFT & Transformada discreta de Fourier (\emph{Discrete Fourier Transform})\\
-  EIIP & Potencial de interação elétron-íon (\emph{Electron-Ion Interaction Potentials})\\
-  STFT & Transformada de Fourier de tempo reduzido (\emph{Short-Time Fourier Transform})\\
-  ABNT & Associação Brasileira de Normas Técnicas\\
-   URL & Localizador Uniforme de Recursos (\emph{Uniform Resource Locator})\\
-   IME & Instituto de Matemática e Estatística\\
-   USP & Universidade de São Paulo
+    CFT  & Transformada contínua de Fourier (\emph{Continuous Fourier Transform})          \\
+    DFT  & Transformada discreta de Fourier (\emph{Discrete Fourier Transform})            \\
+    EIIP & Potencial de interação elétron-íon (\emph{Electron-Ion Interaction Potentials}) \\
+    STFT & Transformada de Fourier de tempo reduzido (\emph{Short-Time Fourier Transform}) \\
+    ABNT & Associação Brasileira de Normas Técnicas                                        \\
+    URL  & Localizador Uniforme de Recursos (\emph{Uniform Resource Locator})              \\
+    IME  & Instituto de Matemática e Estatística                                           \\
+    USP  & Universidade de São Paulo
 \end{tabular}
 
 %\chapter*{Lista de símbolos}
 \disablenewpage{\chapter*{Lista de símbolos}}
 
 \begin{tabular}{rl}
-  $\omega$ & Frequência angular\\
-    $\psi$ & Função de análise \emph{wavelet}\\
-    $\Psi$ & Transformada de Fourier de $\psi$\\
+    $\omega$ & Frequência angular                \\
+    $\psi$   & Função de análise \emph{wavelet}  \\
+    $\Psi$   & Transformada de Fourier de $\psi$ \\
 \end{tabular}
 
 % Quebra de página manual
@@ -419,9 +421,9 @@ texto texto texto texto. Texto opcional.
 % A bibliografia é obrigatória
 
 \printbibliography[
-  title=\refname\label{sec:bib}, % "Referências", recomendado pela ABNT
-  %title=\bibname\label{sec:bib}, % "Bibliografia"
-  heading=bibintoc, % Inclui a bibliografia no sumário
+    title=\refname\label{sec:bib}, % "Referências", recomendado pela ABNT
+    %title=\bibname\label{sec:bib}, % "Bibliografia"
+    heading=bibintoc, % Inclui a bibliografia no sumário
 ]
 
 \printindex % imprime o índice remissivo no documento (opcional)

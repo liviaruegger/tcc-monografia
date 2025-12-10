@@ -2370,26 +2370,14 @@
       \renewcommand\programname{Programa}%
       \renewcommand\committeename{Comissão julgadora}%
       \renewcommand\advisorname{%
-        \iftoggle{@tcc}{%
-          \ifdefstring{\@advisorGender}{masc}
-            {Supervisor}
-            {Supervisora}%
-        }{%
-          \ifdefstring{\@advisorGender}{masc}
-            {Orientador}
-            {Orientadora}%
-        }%
+        \ifdefstring{\@advisorGender}{masc}
+          {Orientador}
+          {Orientadora}%
       }%
       \renewcommand\coadvisorname[1]{%
-        \iftoggle{@tcc}{%
-          \ifcsstring{@coadvisor#1Gender}{masc}
-            {Cossupervisor}
-            {Cossupervisora}%
-        }{%
-          \ifcsstring{@coadvisor#1Gender}{masc}
-            {Coorientador}
-            {Coorientadora}%
-        }%
+        \ifcsstring{@coadvisor#1Gender}{masc}
+          {Coorientador}
+          {Coorientadora}%
       }%
       \renewcommand\workname{%
         \iftoggle{@tcc}
@@ -2427,8 +2415,8 @@
       %
       \renewcommand\@coverTCCText{%
         Monografia Final\vspace{.5\baselineskip}\\
-        \@macCDXCIX{} --- Trabalho de\\
-        Formatura Supervisionado%
+        \@macCDXCIX{} --- Trabalho de Formatura\\
+        Supervisionado Voltado à Extensão%
       }%
       \renewcommand\@coverQualiText{%
         Relatório apresentado ao\\
@@ -2485,10 +2473,10 @@
       \renewcommand\programname{Program}%
       \renewcommand\committeename{Examining Committee}
       \renewcommand\advisorname{%
-        \iftoggle{@tcc}{Supervisor}{Advisor}%
+        Advisor%
       }%
       \renewcommand\coadvisorname[1]{%
-        \iftoggle{@tcc}{Co-supervisor}{Coadvisor}%
+        Coadvisor%
       }%
       % "Tese" e "dissertação" têm sentido contrário em língua inglesa:
       % http://guides.lib.berkeley.edu/dissertations_theses
@@ -2547,7 +2535,8 @@
       %
       \renewcommand\@coverTCCText{%
         Final Essay\vspace{.5\baselineskip}\\
-        \@macCDXCIX{} --- Capstone Project%
+        \@macCDXCIX{} --- Capstone Project focused on\\
+        University Extension%
       }%
       \renewcommand\@coverQualiText{%
         Report presented to the\\
@@ -3070,14 +3059,14 @@
 % usar latin modern e torcer para o resultado não ser % muito discrepante do
 % restante do texto.
 
-% 499 = CDXCIX
+% 500 = MAC0500
 \@ifpackageloaded{fontspec}
-  {\providecommand{\@macCDXCIX}{mac~\oldstylenums{499}}}
+  {\providecommand{\@macCDXCIX}{MAC~\oldstylenums{0500}}}
   {
-    \providecommand{\@macCDXCIX}{{\fontfamily{lmr}\selectfont mac~\oldstylenums{499}}}
+    \providecommand{\@macCDXCIX}{{\fontfamily{lmr}\selectfont MAC~\oldstylenums{0500}}}
 
     \@ifpackageloaded{libertinus}
-      {\renewcommand{\@macCDXCIX}{{\LibertinusSerifOsF mac~499}}}
+      {\renewcommand{\@macCDXCIX}{{\LibertinusSerifOsF MAC~0500}}}
       {}
   }
 
