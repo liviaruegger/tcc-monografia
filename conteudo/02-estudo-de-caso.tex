@@ -8,7 +8,7 @@
 \section{Metodologia}
 \label{sec:metodologia}
 
-Durante o processo de desenvolvimento, diversas abordagens foram consideradas para resolver o problema de conversão de arquivos GeoTIFF para o formato Raw compatível com Unity. A análise dessas alternativas foi fundamental para fundamentar a escolha da solução final. Esta seção descreve as três principais abordagens avaliadas durante o desenvolvimento.
+Durante o processo de desenvolvimento, diversas abordagens foram consideradas para resolver o problema de conversão de arquivos GeoTIFF para o formato Raw compatível com Unity. A análise dessas alternativas foi fundamental para a escolha da solução final. Esta seção descreve as três principais abordagens avaliadas durante o desenvolvimento.
 
 \subsection{Incremento da ferramenta GDAL Translate no núcleo do QGIS}
 
@@ -20,7 +20,7 @@ No entanto, esta abordagem foi descartada por apresentar limitações significat
 
 Uma segunda alternativa explorada foi o desenvolvimento de um script simples para o \emph{QGIS Processing Toolbox}, que poderia ser executado diretamente sem a necessidade de criar um \emph{plugin} completo. Esta abordagem foi implementada como uma solução de prototipagem rápida, servindo como protótipo de baixa fidelidade para validar a lógica de conversão antes do desenvolvimento do \emph{plugin}.
 
-O script demonstrou a viabilidade técnica da solução e permitiu testar os algoritmos de processamento, incluindo normalização de valores, tratamento de NoData e cálculo de dimensões. No entanto, scripts do \emph{Processing Toolbox} apresentam limitações em termos de interface de usuário, documentação e distribuição. A solução adotada, um \emph{plugin} completo, oferece melhor integração com o QGIS, interface gráfica mais robusta e facilita a distribuição através do repositório oficial de \emph{plugins}.
+O script demonstrou a viabilidade técnica da solução e permitiu testar os algoritmos de processamento. No entanto, scripts do \emph{Processing Toolbox} apresentam limitações em termos de interface de usuário, documentação e distribuição. A solução adotada, um \emph{plugin} completo, oferece melhor integração com o QGIS, interface gráfica mais robusta e facilita a distribuição através do repositório oficial de \emph{plugins}.
 
 O código do script prototípico está disponível no Apêndice~\ref{apendice:script-prototipo} para referência.
 
@@ -29,8 +29,8 @@ O código do script prototípico está disponível no Apêndice~\ref{apendice:sc
 A solução adotada foi o desenvolvimento de um \emph{plugin} completo para o QGIS, seguindo as convenções e boas práticas estabelecidas pela comunidade~\citep{qgisPlugins}. Esta abordagem oferece as seguintes vantagens:
 
 \begin{itemize}
-  \item \textbf{Integração nativa}: O \emph{plugin} se integra naturalmente ao QGIS através do \emph{Processing Framework}, aparecendo na interface padrão de processamento do software.
-  \item \textbf{Interface gráfica robusta}: Permite o desenvolvimento de uma interface de usuário completa e intuitiva, com validação de entrada, feedback detalhado e tratamento de erros.
+  \item \textbf{Integração nativa}: O \emph{plugin} se integra diretamente ao QGIS através do \emph{Processing Framework}, aparecendo na interface padrão de processamento do software.
+  \item \textbf{Interface gráfica robusta}: Permite o desenvolvimento de uma interface de usuário completa, com validação de entrada, feedback detalhado e tratamento de erros.
   \item \textbf{Distribuição facilitada}: \emph{Plugins} podem ser publicados no repositório oficial do QGIS, tornando a ferramenta facilmente acessível a toda a comunidade de usuários.
   \item \textbf{Manutenibilidade}: A estrutura modular de \emph{plugins} facilita a manutenção e evolução do código, além de permitir contribuições da comunidade.
   \item \textbf{Documentação integrada}: \emph{Plugins} podem incluir documentação contextual e ajuda integrada ao QGIS.
@@ -89,7 +89,7 @@ Diversas discussões em fóruns especializados evidenciam a persistência do pro
   \item \textbf{Reddit}: Comunidades tanto de Unity quanto de GIS discutem métodos para converter \emph{heightmaps} TIFF para Raw, frequentemente mencionando a necessidade de scripts ou processos manuais complexos~\citep{redditUnity1, redditGIS}.
 \end{itemize}
 
-Essas discussões, embora não constituam referências técnicas oficiais, confirmam que o problema não é isolado e que existe uma demanda real por uma solução integrada e simplificada. A frequência com que o tema aparece em diferentes plataformas indica que a barreira técnica atual afeta significativamente a adoção de dados geoespaciais reais em projetos Unity, especialmente por pesquisadores e profissionais de áreas não ligadas à computação.
+Essas discussões, embora não constituam referências técnicas oficiais, confirmam que o problema não é isolado e que existe uma demanda real por uma solução integrada e simplificada. A frequência com que o tema aparece em diferentes plataformas indica que a barreira técnica atual afeta significativamente a adoção de dados geoespaciais reais em projetos Unity.
 
 \section{Proposta}
 \label{sec:proposta}
@@ -103,7 +103,7 @@ Ao encapsular a complexidade do processo de conversão, o \emph{plugin} atuará 
 \subsection{Requisitos funcionais}
 \label{subsec:requisitos-funcionais}
 
-Os requisitos funcionais especificam o que o sistema deve ser capaz de fazer. Para capturar estes requisitos a partir da perspectiva do usuário final, foi utilizada a metodologia de Histórias de Usuário (\emph{User Stories}), que descrevem uma funcionalidade do software de forma simples e direta.
+Os requisitos funcionais especificam o que o sistema deve ser capaz de fazer. Para capturar estes requisitos a partir da perspectiva do usuário final, foi utilizada a metodologia de Histórias de Usuário (\emph{User Stories}), que descrevem uma funcionalidade do software em alto nível.
 
 \begin{table}[H]
   \centering
@@ -142,13 +142,12 @@ Com base nas histórias de usuário apresentadas, os seguintes requisitos funcio
   \item[RF02] O sistema deve apresentar uma interface gráfica para que o usuário possa definir o caminho e o nome do arquivo de saída com a extensão .raw.
   \item[RF03] O sistema deve, internamente, realizar a conversão do dado de entrada para o formato de 16-bit sem sinal (unsigned integer), que é o padrão exigido pelo Unity.
   \item[RF04] Caso a camada de entrada contenha dados em ponto flutuante, o sistema deve aplicar uma normalização para escalar os valores de elevação para o intervalo de 0 a 65535.
-  \item[RF05] A interface deve oferecer ao usuário a opção de selecionar a ordem de bytes (byte order/endianness) do arquivo de saída (ex: ``Intel/Windows'' ou ``Mac'').
-  \item[RF06] O sistema deve detectar e excluir automaticamente valores NoData do cálculo da faixa de elevação, garantindo normalização correta dos dados.
-  \item[RF07] O sistema deve calcular e apresentar ao usuário os parâmetros sugeridos para importação no Unity, incluindo resolução (largura × altura), dimensões do terreno (X, Y, Z em metros) e faixa de elevação.
-  \item[RF08] O sistema deve considerar diferenças entre sistemas de coordenadas geográficos e projetados no cálculo das dimensões do terreno, fornecendo valores corretos em metros para o Unity.
-  \item[RF09] O sistema deve exibir uma mensagem de confirmação ao usuário após a conclusão bem-sucedida da conversão.
-  \item[RF10] Em caso de falha (ex: camada de entrada inválida), o sistema deve exibir uma mensagem de erro informativa e de fácil compreensão.
-  \item[RF11] A funcionalidade de conversão deve ser acionada por meio de um botão (ex: ``Converter'' ou ``Executar'').
+  \item[RF05] O sistema deve detectar e excluir automaticamente valores NoData do cálculo da faixa de elevação, garantindo normalização correta dos dados.
+  \item[RF06] O sistema deve calcular e apresentar ao usuário os parâmetros sugeridos para importação no Unity, incluindo resolução (largura × altura), dimensões do terreno (X, Y, Z em metros) e faixa de elevação.
+  \item[RF07] O sistema deve considerar diferenças entre sistemas de coordenadas geográficos e projetados no cálculo das dimensões do terreno, fornecendo valores corretos em metros para o Unity.
+  \item[RF08] O sistema deve exibir uma mensagem de confirmação ao usuário após a conclusão bem-sucedida da conversão.
+  \item[RF09] Em caso de falha (ex: camada de entrada inválida), o sistema deve exibir uma mensagem de erro informativa e de fácil compreensão.
+  \item[RF10] A funcionalidade de conversão deve ser acionada por meio de um botão (ex: ``Converter'' ou ``Executar'').
 \end{enumerate}
 
 \subsection{Solução adotada}
@@ -160,7 +159,7 @@ O \emph{plugin} foi desenvolvido em Python utilizando a Interface de Programaç�
 
 O projeto é licenciado sob a GPL-3.0, alinhando-se com a filosofia de software livre do QGIS e garantindo que a solução permaneça aberta e acessível à comunidade. O código-fonte está disponível publicamente no repositório GitHub: \url{https://github.com/liviaruegger/unity-terrain-exporter}.
 
-A arquitetura da solução conecta três ecossistemas principais: o QGIS, como ambiente de análise geoespacial; a GDAL, como biblioteca de processamento de dados; e o Unity, como plataforma de destino para visualização 3D.
+A solução conecta três ecossistemas principais: o QGIS, como ambiente de análise geoespacial; a GDAL, como biblioteca de processamento de dados; e o Unity, como plataforma de destino para visualização 3D.
 
 \subsection{Prova de conceito}
 \label{subsec:prova-conceito}
@@ -170,14 +169,14 @@ Uma prova de conceito funcional foi desenvolvida e está disponível publicament
 O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas principais, ilustradas nas Figuras~\ref{fig:prova-1} a~\ref{fig:prova-5}:
 
 \begin{enumerate}
-  \item \textbf{Instalação e seleção de dados}: Após instalar o plugin no QGIS, o usuário seleciona uma camada raster (GeoTIFF) que já está aberta no projeto, eliminando a necessidade de navegar novamente pelo sistema de arquivos. A interface do plugin instalado é mostrada na Figura~\ref{fig:prova-1}.
+  \item \textbf{Instalação do plugin}: Através do \emph{Plugin Manager} ("Plugins" $\rightarrow$ "Manage and Install Plugins..."), o usuário pode instalar o \emph{plugin} (a partir de um ZIP ou do repositório oficial) e visualizar seus metadados.
 
   \item \textbf{Seleção do MDE}: O usuário trabalha com dados geoespaciais já carregados no projeto QGIS, como ilustrado na Figura~\ref{fig:prova-2}, que mostra um exemplo de MDE em formato GeoTIFF.
 
-  \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário define o arquivo de saída (.raw). O \emph{plugin} processa automaticamente o dado de entrada, realizando as seguintes operações:
+  \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário seleciona uma camada raster (GeoTIFF) que já está aberta no projeto, eliminando a necessidade de navegar novamente pelo sistema de arquivos; o usuário, então, define o arquivo de saída (.raw). O \emph{plugin} processa automaticamente o dado de entrada, realizando as seguintes operações:
         \begin{itemize}
           \item Recorte para imagem quadrada (a partir do centro, utilizando a menor dimensão)
-          \item Reprojeção automática para sistema de coordenadas Universal Transverse Mercator (UTM) apropriado
+          \item Detecção do sistema de coordenadas e verificação se está em Universal Transverse Mercator (UTM)
           \item Normalização para 16-bit sem sinal (unsigned integer), preservando a faixa de elevação original
           \item Tratamento de valores NoData, excluindo-os do cálculo da faixa de elevação
           \item Cálculo correto das dimensões (X, Y, Z) considerando diferenças entre sistemas de coordenadas geográficos e projetados
@@ -235,28 +234,28 @@ O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas princ
 
 \clearpage
 
-A prova de conceito valida que a solução proposta atende aos requisitos funcionais estabelecidos, demonstrando que é possível automatizar o processo de conversão de MDEs do formato GeoTIFF para o formato Raw compatível com Unity, reduzindo significativamente a barreira técnica para pesquisadores não especializados em computação.
+A prova de conceito valida que a solução proposta atende aos requisitos funcionais estabelecidos, demonstrando que é possível automatizar o processo de conversão de MDEs do formato GeoTIFF para o formato Raw compatível com Unity, reduzindo significativamente a barreira técnica encontrada.
 
 \subsection{Problemas encontrados durante o desenvolvimento}
 \label{subsec:problemas-desenvolvimento}
 
-Durante o desenvolvimento do plugin, diversos desafios técnicos foram identificados e resolvidos. A documentação desses problemas e suas soluções é relevante tanto para compreender as decisões de projeto quanto para orientar futuros desenvolvedores que possam trabalhar com funcionalidades similares.
+Durante o desenvolvimento do plugin, diversos desafios técnicos foram identificados e resolvidos. A documentação desses problemas e suas soluções é relevante para compreender as decisões de projeto.
 
 \subsubsection{Problema da reprojeção: coordenadas geográficas versus metros no Unity}
 
 Um dos primeiros desafios identificados relaciona-se à diferença fundamental entre sistemas de coordenadas geográficos (latitude/longitude em graus) e sistemas projetados (coordenadas em metros). Dados geoespaciais frequentemente são armazenados em sistemas de coordenadas geográficos (como World Geodetic System 1984 (WGS84)), onde as unidades são graus, não metros. No entanto, o Unity trabalha com unidades métricas para dimensões de terreno.
 
-Quando um MDE em coordenadas geográficas é convertido diretamente para Raw, as dimensões calculadas resultam em valores incorretos, pois o Unity interpreta os valores como metros. Por exemplo, uma diferença de 0.01 graus de latitude não corresponde a 0.01 metros, mas aproximadamente a 1.1 quilômetros na linha do equador.
+Quando um MDE em coordenadas geográficas é convertido diretamente para Raw, as dimensões calculadas resultam em valores incorretos, pois o Unity interpreta os valores como metros. Por exemplo, uma diferença de 0.01 graus de latitude não corresponde a 0.01 metros.
 
-A solução implementada inclui a reprojeção automática do dado de entrada para o sistema de coordenadas Universal Transverse Mercator (UTM) apropriado, baseada na localização geográfica central do dataset. O \emph{plugin} detecta automaticamente a longitude e latitude do centro da imagem e calcula a zona UTM correta, realizando a reprojeção antes do processamento. Esta abordagem garante que todas as dimensões sejam calculadas em metros, permitindo que o Unity interprete corretamente as dimensões físicas do terreno. Após a reprojeção, o cálculo das dimensões é direto, pois as unidades já são métricas.
+A solução implementada detecta o sistema de coordenadas do dado de entrada e verifica se ele já está em Universal Transverse Mercator (UTM). Se o dado não estiver em UTM, o \emph{plugin} emite um aviso recomendando que o usuário reprojete o dado para UTM antes do processamento (funcionalidade já disponível no QGIS), garantindo que as dimensões sejam calculadas em metros e que o Unity interprete corretamente as dimensões físicas do terreno. Quando o dado já está em UTM, o cálculo das dimensões é direto, pois as unidades já são métricas.
 
 \subsubsection{Problema do tratamento de valores NoData}
 
-Durante os testes com dados reais, foi identificado que arquivos GeoTIFF frequentemente contêm valores NoData (ausência de dados), que podem aparecer em diferentes contextos, como áreas sem cobertura de dados ou após processos de reprojeção. Esses valores NoData, quando incluídos no cálculo da faixa de elevação (mínimo e máximo), distorcem significativamente a normalização dos dados, resultando em terrenos com elevações incorretas no Unity.
+Durante os testes com dados reais, foi identificado que arquivos GeoTIFF frequentemente contêm valores que não representam elevação real e devem ser excluídos do cálculo da faixa de elevação. Esses valores podem aparecer em duas formas distintas: (1) valores NoData, definidos explicitamente nos metadados do arquivo como ausência de dados, que podem aparecer em áreas sem cobertura ou após processos de reprojeção; e (2) valores de padding (preenchimento), tipicamente zeros concentrados nas bordas da imagem, resultantes de operações de rotação ou recorte. Quando incluídos no cálculo da faixa de elevação (mínimo e máximo), ambos os tipos de valores distorcem significativamente a normalização dos dados, resultando em terrenos com elevações incorretas no Unity.
 
-Por exemplo, se um MDE tem valores de elevação reais entre 800 e 1200 metros, mas contém valores NoData (que podem ser representados como valores extremos ou valores especiais), o cálculo direto resultaria em uma faixa incorreta. Isso faria com que a normalização para 16-bit escalasse incorretamente os valores, comprimindo a faixa útil de elevação e gerando um terreno visualmente distorcido.
+Por exemplo, se um MDE tem valores de elevação reais entre 800 e 1200 metros, mas contém valores NoData ou padding (que podem ser representados como valores extremos, valores especiais ou zeros nas bordas), o cálculo direto resultaria em uma faixa de elevação incorreta. Isso faria com que a normalização para 16-bit escalasse incorretamente os valores, comprimindo a faixa útil de elevação e gerando um terreno visualmente distorcido.
 
-A solução implementada inclui a detecção automática de valores NoData através dos metadados do arquivo GeoTIFF. O algoritmo identifica o valor NoData especificado na banda raster e o exclui do cálculo da faixa de elevação, substituindo esses valores pelo valor mínimo real antes da normalização. Esta abordagem garante que apenas os valores de elevação reais sejam considerados na normalização, preservando a fidelidade topográfica do terreno original.
+A solução implementada inclui duas etapas de filtragem: primeiro, a detecção automática de valores NoData através dos metadados do arquivo GeoTIFF, onde o algoritmo identifica o valor NoData especificado na banda raster; segundo, a detecção de padding através da análise da distribuição de zeros nas bordas da imagem em comparação com a região central. O algoritmo compara a densidade de zeros nas bordas (região externa de 5\% de cada dimensão) com a densidade no centro (região interna de 50\%), identificando padding quando as bordas apresentam significativamente mais zeros que o centro. Ambos os tipos de valores são excluídos do cálculo da faixa de elevação e substituídos pelo valor mínimo real antes da normalização. Esta abordagem garante que apenas os valores de elevação reais sejam considerados na normalização, preservando a fidelidade topográfica do terreno original.
 
 \subsubsection{Problema dos cálculos de dimensões e logs informativos}
 
