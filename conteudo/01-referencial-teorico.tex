@@ -1,0 +1,143 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+\chapter{Referencial teórico}
+\label{cap:referencial}
+
+\section{QGIS}
+\label{sec:qgis}
+
+% TODO: esta seção ainda precisa de bastante desenvolvimento
+
+O QGIS é um Sistema de Informação Geográfica (SIG) livre, gratuito e multiplataforma, que suporta a visualização, edição e análise de dados geoespaciais. Sendo o software geoespacial livre mais popular do mundo, o QGIS pertence à Open Source Geospatial Foundation (OSGeo) e é mantido por uma crescente comunidade de usuários e desenvolvedores~\citep{khan2018,rosas2022}.
+
+\subsection{Breve Histórico}
+\label{subsec:qgis-historico}
+
+O projeto foi iniciado em 2002 pelo programador Gary Sherman, que buscava um visualizador rápido de dados geográficos para o sistema operacional Linux. Originalmente chamado de Quantum GIS, o projeto foi oficialmente registrado na Open Source Geospatial Foundation (OSGeo) em junho de 2002. A OSGeo é uma organização sem fins lucrativos que tem como missão apoiar o desenvolvimento colaborativo de tecnologias geoespaciais abertas e promover seu uso generalizado. Desde então, o QGIS evoluiu de um simples visualizador para um poderoso SIG, utilizado para criação, edição e análises espaciais complexas~\citep{khan2018,rosas2022}.
+
+\subsection{Arquitetura e Extensibilidade}
+\label{subsec:qgis-arquitetura}
+
+A arquitetura do QGIS é um de seus maiores diferenciais, e reflete diretamente seu compromisso com o software livre. O núcleo do software é desenvolvido na linguagem de programação C++ e utiliza o framework de interface de usuário Qt Project (o ``Q'' em QGIS, inclusive, refere-se ao Qt)~\citep{khan2018}. Em 2007, foi incorporada uma Interface de Programação de Aplicações (API) em Python, conhecida como PyQGIS, o que expandiu enormemente sua funcionalidade e atraiu um número crescente de desenvolvedores~\citep{rosas2022}. Essa arquitetura permite que novas funcionalidades sejam adicionadas através de plugins, que podem ser escritos tanto em Python quanto em C++~\citep{khan2018}. Essa capacidade de extensão é uma das características mais relevantes do QGIS, permitindo que a comunidade de usuários desenvolva ferramentas para resolver problemas específicos de GIS~\citep{khan2018,rosas2022}.
+
+\subsection{Comparativo com Software Proprietário}
+\label{subsec:qgis-comparativo}
+
+O QGIS se posiciona como a principal alternativa livre ao ArcGIS, da empresa Esri, que é a maior organização na indústria de SIG. As diferenças fundamentais entre os dois softwares residem em seus modelos de licença, custo, plataforma e suporte~\citep{khan2018}.
+
+\begin{itemize}
+  \item \textbf{Custo e Licença:} O QGIS é um software livre e gratuito, distribuído sob a licença GNU General Public License (GPL). Esta licença garante aos usuários a liberdade de compartilhar e adaptar o software para qualquer finalidade, inclusive comercial. Em contrapartida, o ArcGIS é um produto de software proprietário com custos de licenciamento que podem variar de 2.500€ a 25.000€ por licença, além de taxas anuais de manutenção. O código-fonte do ArcGIS não é público e não pode ser utilizado para construir outras aplicações~\citep{khan2018}.
+  \item \textbf{Plataforma e Instalação:} O QGIS é multiplataforma, com versões para Windows, Mac OS X, Linux e BSD. O ArcGIS, por sua vez, é certificado apenas para sistemas operacionais Windows~\citep{khan2018}.
+  \item \textbf{Suporte e Comunidade:} O suporte para o ArcGIS é oferecido por meio de um sistema bem estabelecido de suporte técnico, fóruns e uma base de conhecimento, geralmente associado a custos. O QGIS, por outro lado, conta com o suporte de uma vasta comunidade global através de listas de e-mail, fóruns e chats online, além de empresas que oferecem suporte comercial~\citep{khan2018}.
+\end{itemize}
+
+\section{Geospatial Data Abstraction Library (GDAL)}
+\label{sec:gdal}
+
+A Geospatial Data Abstraction Library (GDAL) é uma biblioteca de software livre que funciona como um tradutor para formatos de dados geoespaciais~\citep{khan2018}. Ela não é um software com interface gráfica, mas sim um poderoso motor de processamento que serve de base para inúmeras aplicações SIG e suas funcionalidades, incluindo o QGIS~\citep{khan2018}. A biblioteca é composta por:
+
+\begin{itemize}
+  \item \textbf{GDAL:} Focada em dados matriciais (raster), como Modelos Digitais de Elevação.
+  \item \textbf{OGR:} Focada em dados vetoriais (pontos, linhas e polígonos).
+\end{itemize}
+
+\section{Integração entre QGIS e GDAL}
+\label{sec:qgis-gdal}
+
+% TODO: Escrever sobre o GDAL Tools, que fazia parte da biblioteca de plugins antes da integração no QGIS Processing Toolbox (GDAL Provider) a partir da versão 3.0
+
+A integração entre QGIS e GDAL é fundacional; o QGIS utiliza a biblioteca GDAL/OGR para ler e escrever a grande maioria dos formatos de dados que suporta. É graças a essa integração que o QGIS consegue trabalhar com uma vasta gama de formatos, incluindo, em 2014, 133 formatos raster e 79 formatos vetoriais suportados pela GDAL. O formato vetorial mais comum, o Shapefile [.shp] da Esri, é também o formato padrão utilizado no QGIS~\citep{khan2018}.
+
+Muitas das ferramentas de geoprocessamento disponíveis no QGIS são, na prática, interfaces gráficas que executam comandos da GDAL nos bastidores. No entanto, embora a GDAL possua a capacidade de realizar a conversão de GeoTIFF para .raw, essa funcionalidade não está exposta de forma direta e intuitiva na interface do QGIS para o fim específico de compatibilidade com o Unity. O projeto proposto neste TCC visa, portanto, criar uma interface amigável dentro do QGIS que utilize o poder da GDAL de forma estruturada, abstraindo a complexidade da linha de comando e garantindo que os parâmetros corretos sejam aplicados para a geração de um arquivo válido para o motor de jogos.
+
+\section{Formatos de arquivos raster para SIG}
+\label{sec:formatos-raster}
+
+Os SIG, e o QGIS em particular, fundamentam a representação de dados espaciais em dois modelos primários: o vetorial e o matricial (ou raster). O modelo vetorial representa feições geográficas por meio de geometrias discretas (pontos, linhas e polígonos), sendo ideal para objetos com limites bem definidos, como lotes, rios ou edifícios. Por outro lado, o modelo matricial é projetado para representar fenômenos de natureza contínua no espaço, conceitualizando a superfície como um campo de valores que é discretizado em uma grade regular de células (pixels). Essa estrutura resulta em uma representação pseudo-contínua, onde cada célula armazena um único valor que corresponde à propriedade daquela localização — como reflectância, temperatura ou, crucialmente para este trabalho, a elevação. A fidelidade dessa aproximação da superfície contínua é diretamente dependente da resolução espacial do raster.
+
+Embora o QGIS possua um conjunto robusto de ferramentas para a manipulação de ambos os modelos, o escopo deste trabalho concentra-se exclusivamente no tratamento de dados matriciais. Especificamente, o estudo de caso aborda a manipulação de heightmaps derivados de MDE, que são uma forma de dado raster onde o valor de cada pixel corresponde a uma altitude. As subseções a seguir descrevem detalhes técnicos dos formatos de arquivo raster pertinentes a este projeto: o GeoTIFF, como formato de origem dos dados de elevação, e o formato RAW, como formato de destino para a compatibilidade com o sistema de terrenos no Unity, assim como o formato BIL, que, por vezes, é utilizado por usuários como uma etapa intermediária na conversão.
+
+\subsection{GeoTIFF}
+\label{subsec:geotiff}
+
+O GeoTIFF é um padrão de domínio público que define um conjunto de metadados para descrever informações cartográficas e geodésicas associadas a imagens no formato TIFF (Tagged Image File Format). Em essência, o GeoTIFF não é um novo formato de imagem, mas sim uma extensão do padrão TIFF 6.0, que utiliza o mecanismo de ``tags'' (etiquetas) para incorporar informações de georreferenciamento diretamente no arquivo de imagem. Esta abordagem cria um arquivo autocontido, onde os dados da imagem (os pixels) e os metadados que descrevem sua localização espacial coexistem.
+
+Para compreender o GeoTIFF, é preciso primeiro entender o formato TIFF. Desenvolvido pela Aldus Corporation (posteriormente adquirida pela Adobe), o TIFF é um formato de arquivo para imagens matriciais (raster) conhecido por sua flexibilidade e capacidade de armazenamento de dados e metadados. Sua estrutura é baseada em ``tags'', que são blocos de informação que descrevem as características da imagem, como sua largura e altura em pixels, o número de bits por pixel, o esquema de compressão utilizado e a organização dos dados. A especificação do TIFF permite a criação de ``tags privadas'', que desenvolvedores podem definir para fins específicos. É exatamente essa capacidade de extensão que o padrão GeoTIFF aproveita para adicionar o componente geoespacial.
+
+O padrão GeoTIFF estabelece um método estruturado para embutir metadados geoespaciais complexos utilizando um pequeno número de tags TIFF. A mais importante delas é a GeoKeyDirectoryTag, que funciona como um diretório para um conjunto de ``chaves'' de metadados, conhecidas como GeoKeys. Cada GeoKey é um par de chave-valor que descreve um parâmetro específico do sistema de referência espacial da imagem. Através das GeoKeys, um arquivo GeoTIFF pode armazenar informações detalhadas, como:
+
+\begin{itemize}
+  \item \textbf{Sistema de Coordenadas de Referência (CRS):} Define o sistema de coordenadas no qual os dados estão representados (ex: WGS 84 / UTM zona 23S).
+  \item \textbf{Projeção Cartográfica:} O tipo de projeção utilizada (ex: Transversa de Mercator).
+  \item \textbf{Datum e Elipsoide:} Os modelos geodésicos que definem a forma e o tamanho da Terra para o mapeamento.
+  \item \textbf{Unidades de Medida:} As unidades para as coordenadas e para os valores de elevação (ex: metros).
+\end{itemize}
+
+Essa estrutura robusta garante que o arquivo seja inequivocamente georreferenciado, permitindo que softwares de SIG, como o QGIS, o posicionem corretamente no globo terrestre sem a necessidade de arquivos externos (como os ``world files'').
+
+No contexto específico deste trabalho, pensando no uso em mapas de elevação, o formato GeoTIFF é particularmente poderoso. Em um GeoTIFF utilizado como heightmap ou Modelo Digital de Elevação (MDE), a imagem é tipicamente de banda única (monocromática), e o valor de cada pixel não representa uma cor, mas sim uma medida quantitativa de elevação em relação a um datum vertical.
+
+A especificação TIFF permite que esses valores de elevação sejam armazenados em diferentes tipos de dados numéricos, como inteiro de 16 bits (16-bit Integer) ou ponto flutuante de 32 bits (32-bit Floating Point). O tipo de dado de ponto flutuante é frequentemente utilizado para representar elevações com alta precisão.
+
+Um arquivo GeoTIFF de elevação, portanto, combina duas informações cruciais: as GeoKeys fornecem o ``onde'' (a localização geográfica e o sistema de coordenadas de cada pixel), enquanto o valor de cada pixel fornece o ``o quê'' (a altitude ou elevação naquele ponto específico). Essa combinação faz do GeoTIFF o formato preciso e autocontido para dados de terreno, servindo como o ponto de partida ideal para o processo de conversão para ambientes de simulação 3D, como o que é abordado neste trabalho~\citep{ogcGeoTIFF}.
+
+\subsection{Heightmap compatível com o Unity (.raw)}
+\label{subsec:unity-raw}
+
+É fundamental iniciar a descrição do formato de heightmap do Unity com um esclarecimento importante: a designação de arquivo ``RAW'' é um termo genérico na computação, utilizado para descrever dados brutos, não processados e sem um cabeçalho estruturado. Diferentemente de padrões bem definidos como JPEG ou PNG, um arquivo com a extensão .raw pode conter virtualmente qualquer tipo de dado binário. Portanto, no contexto deste trabalho, o termo ``arquivo .raw'' refere-se exclusivamente à especificação particular de dados de elevação exigida pelo motor de jogos Unity para a criação de seus objetos de terreno (Terrain).
+
+Em essência, um heightmap no formato .raw para o Unity é um arquivo binário simples que armazena os dados de elevação de forma sequencial e não comprimida. Trata-se de uma representação em escala de cinza de 16 bits, onde o valor de cada pixel corresponde diretamente à altura em um ponto específico do terreno. Nessa representação, os valores mais baixos (próximos de 0, representados como preto) correspondem aos pontos de menor elevação, enquanto os valores mais altos (próximos de 65.535, representados como branco) correspondem às maiores elevações. A profundidade de 16 bits por pixel permite 65.536 níveis distintos de altura, oferecendo uma resolução vertical detalhada para o terreno.
+
+A principal característica (e o principal desafio) do formato .raw é a sua completa ausência de metadados. Diferentemente do GeoTIFF, que embute informações sobre suas dimensões, sistema de coordenadas e tipo de dados, o arquivo .raw é apenas um fluxo contínuo de bytes. Consequentemente, para que o Unity possa interpretar corretamente o arquivo, o usuário precisa fornecer manualmente, durante o processo de importação, parâmetros cruciais como a profundidade de bits (16-bit), as dimensões do mapa (largura e altura) e a ordem dos bytes (byte order ou endianness). A ordem dos bytes é particularmente importante, pois determina como os dois bytes de um inteiro de 16 bits são lidos, havendo uma distinção entre o padrão Windows (little-endian) e o padrão Mac (big-endian).
+
+Estruturalmente, este formato pode ser entendido como um caso específico do formato BIL (Band Interleaved by Line), porém contendo uma única banda de dados (a de elevação). Adicionalmente, para otimizar o desempenho do sistema de renderização, a documentação do Unity recomenda que as dimensões do heightmap sigam o padrão de potência de dois mais um (ex: 257x257, 513x513, 1025x1025 ou 4097x4097 pixels).
+
+Em suma, o formato .raw do Unity é otimizado para simplicidade e performance de leitura pelo motor de jogos, sacrificando a portabilidade e a riqueza descritiva de formatos geoespaciais como o GeoTIFF. Essa troca justifica a necessidade de uma ferramenta intermediária, como a proposta neste trabalho, para realizar a conversão de forma controlada e precisa~\citep{unityHeightmaps}.
+
+\subsection{Band Interleaved by Line (BIL)}
+\label{subsec:bil}
+
+Diversas soluções comumente utilizadas para o problema da conversão de um arquivo no formato GeoTIFF para o arquivo de terreno do Unity (.raw) envolvem uma conversão intermediária para um arquivo BIL (.bil).
+
+O formato BIL, sigla para \emph{Band Interleaved by Line} (Banda Intercalada por Linha), é um método para organizar dados de imagens multibanda. É importante ressaltar que o BIL não é um formato de imagem em si, mas sim um esquema de armazenamento para os valores de pixel de uma imagem dentro de um arquivo binário. Este método é capaz de manipular dados de imagens monocromáticas, em tons de cinza, pseudo cor, cor real e multiespectrais. Para que os dados sejam interpretados corretamente, um arquivo .bil deve ser acompanhado por um arquivo de cabeçalho (.hdr) em formato ASCII.
+
+A principal característica do formato BIL é a maneira como os dados dos pixels são organizados. A informação é armazenada banda por banda para cada linha (ou fileira) da imagem. Em um exemplo prático de uma imagem com três bandas espectrais (como Vermelho, Verde e Azul), o arquivo armazenaria primeiro todos os dados das três bandas para a linha 1, depois todos os dados das três bandas para a linha 2, e assim sucessivamente até a última linha da imagem. Por exemplo, a organização para uma imagem de n linhas e três bandas pode ser visualizada da seguinte forma:
+
+\begin{itemize}
+  \item Linha 1: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
+  \item Linha 2: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
+  \item \ldots
+  \item Linha n: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
+\end{itemize}
+
+Essa estrutura torna a leitura de perfis espaciais que envolvem todas as bandas de uma determinada área (abrangendo múltiplas linhas) relativamente eficiente.
+
+Essa organização de dados não inclui, no entanto, metadados que especifiquem a maneira de interpretá-la; por isso, um conjunto de dados BIL funcional é composto por, no mínimo, dois arquivos (.bil e .hdr), podendo incluir outros arquivos opcionais para funcionalidades adicionais (.clr, .stx). Em resumo:
+
+\begin{itemize}
+  \item \textbf{Arquivo de Dados (`.bil'):} É o arquivo binário que contém os valores brutos dos pixels da imagem, organizados conforme a estrutura de intercalação por linha descrita anteriormente.
+  \item \textbf{Arquivo de Cabeçalho (`.hdr'):} Este é um arquivo de texto ASCII obrigatório que descreve os atributos da imagem, como dimensões e formato dos dados. Sem ele, o software não consegue interpretar corretamente o arquivo binário. O cabeçalho contém entradas no formato \texttt{<keyword> <value>} (palavra-chave e valor), onde cada entrada define um parâmetro da imagem. As palavras-chave mais importantes incluem:
+        \begin{itemize}
+          \item \texttt{nrows}: O número total de linhas na imagem.
+          \item \texttt{ncols}: O número total de colunas na imagem.
+          \item \texttt{nbands}: O número de bandas espectrais.
+          \item \texttt{nbits}: O número de bits por pixel em cada banda (valores comuns são 8, 16 ou 32).
+          \item \texttt{layout}: A organização das bandas, que neste caso seria \texttt{bil}.
+          \item \texttt{skipbytes}: O número de bytes no início do arquivo que devem ser ignorados, útil para pular cabeçalhos de outros formatos embutidos no próprio arquivo de dados.
+        \end{itemize}
+  \item \textbf{Arquivo de Cores (`.clr'):} Um arquivo opcional usado para atribuir uma paleta de cores a imagens de banda única (pseudocor). Se este arquivo estiver ausente, a imagem de banda única será exibida em tons de cinza. Ele mapeia valores de pixel a combinações de cores no modelo RGB (Vermelho, Verde, Azul). Este arquivo é ignorado em imagens multibanda.
+  \item \textbf{Arquivo de Estatísticas (`.stx'):} Também é um arquivo opcional que armazena estatísticas descritivas para cada banda da imagem, como valor mínimo, máximo, média e desvio padrão. Essas informações são frequentemente utilizadas para aplicar um realce de contraste linear, melhorando a visualização da imagem.
+\end{itemize}
+
+Para o caso apresentado neste trabalho, o formato BIL é útil porque os arquivos de terreno aceitos pelo Unity (.raw) são, na prática, idênticos a um arquivo .bil de apenas uma banda (escala de cinza), de maneira que os outros arquivos, como o arquivo de cabeçalho, não são necessários. Por isso, um método comum utilizado por usuários que necessitam da conversão do GeoTIFF para o arquivo de terreno do Unity é:
+
+\begin{enumerate}
+  \item Converter o GeoTIFF para o formato BIL (isso pode ser executado utilizando a ferramenta de \emph{Translate} do QGIS);
+  \item Alterar a extensão do arquivo .bil para .raw;
+  \item Descartar quaisquer outros arquivos gerados no processo de conversão (.hdr etc).
+\end{enumerate}
+
+Para mais detalhes sobre o formato BIL, consulte~\citep{arcgisBIL,arcgisBILExample}.
+

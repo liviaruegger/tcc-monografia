@@ -128,11 +128,10 @@
   programa={Ciência da Computação},
 }
 
-% Não há defesa para este TCC
-%\defesa{
-%  local={São Paulo},
-%  data=2017-08-10, % YYYY-MM-DD
-%}
+\defesa{
+  local={São Paulo},
+  data=2025-09-01, % YYYY-MM-DD (para TCC, apenas o ano será exibido)
+}
 
 % Se não houve bolsa, remova
 %
@@ -209,10 +208,10 @@
 
 %%%%%%%%%%%%%%%% DEDICATÓRIA, AGRADECIMENTOS, RESUMO/ABSTRACT %%%%%%%%%%%%%%%%%%
 
-\begin{dedicatoria}
-    Esta seção é opcional e fica numa página separada; ela pode ser usada para
-    uma dedicatória ou epígrafe.
-\end{dedicatoria}
+%\begin{dedicatoria}
+%    Esta seção é opcional e fica numa página separada; ela pode ser usada para
+%    uma dedicatória ou epígrafe.
+%\end{dedicatoria}
 
 % Reinicia o contador de páginas (a próxima página recebe o número "i") para
 % que a página da dedicatória não seja contada.
@@ -223,13 +222,13 @@
 % esta página. A epígrafe, obviamente, é opcional; é possível colocar
 % epígrafes em todos os capítulos. O comando "\chapter*" faz esta seção
 % não ser incluída no sumário.
-\chapter*{Agradecimentos}
-\epigrafe{Do. Or do not. There is no try.}{Mestre Yoda}
-
-Texto texto texto texto texto texto texto texto texto texto texto texto texto
-texto texto texto texto texto texto texto texto texto texto texto texto texto
-texto texto texto texto texto texto texto texto texto texto texto texto texto
-texto texto texto texto. Texto opcional.
+%\chapter*{Agradecimentos}
+%\epigrafe{Do. Or do not. There is no try.}{Mestre Yoda}
+%
+%Texto texto texto texto texto texto texto texto texto texto texto texto texto
+%texto texto texto texto texto texto texto texto texto texto texto texto texto
+%texto texto texto texto texto texto texto texto texto texto texto texto texto
+%texto texto texto texto. Texto opcional.
 
 \input{conteudo/resumoabstract}
 
@@ -262,28 +261,34 @@ texto texto texto texto. Texto opcional.
 
 %%%%% Listas criadas manualmente
 
-%\chapter*{Lista de abreviaturas}
 \disablenewpage{\chapter*{Lista de abreviaturas}}
 
 \begin{tabular}{rl}
-    CFT  & Transformada contínua de Fourier (\emph{Continuous Fourier Transform})          \\
-    DFT  & Transformada discreta de Fourier (\emph{Discrete Fourier Transform})            \\
-    EIIP & Potencial de interação elétron-íon (\emph{Electron-Ion Interaction Potentials}) \\
-    STFT & Transformada de Fourier de tempo reduzido (\emph{Short-Time Fourier Transform}) \\
-    ABNT & Associação Brasileira de Normas Técnicas                                        \\
-    URL  & Localizador Uniforme de Recursos (\emph{Uniform Resource Locator})              \\
-    IME  & Instituto de Matemática e Estatística                                           \\
-    USP  & Universidade de São Paulo
+    API     & \emph{Application Programming Interface}                                  \\
+    BIL     & \emph{Band Interleaved by Line}                                           \\
+    CLI     & \emph{Command Line Interface}                                             \\
+    CRS     & \emph{Coordinate Reference System} (Sistema de Coordenadas de Referência) \\
+    FAUUSP  & Faculdade de Arquitetura e Urbanismo da Universidade de São Paulo         \\
+    GDAL    & \emph{Geospatial Data Abstraction Library}                                \\
+    GIS     & \emph{Geographic Information System} (Sistema de Informação Geográfica)   \\
+    GPL     & \emph{GNU General Public License}                                         \\
+    IME     & Instituto de Matemática e Estatística                                     \\
+    MAC0500 & Trabalho de Formatura Supervisionado Voltado à Extensão                   \\
+    MDE     & Modelo Digital de Elevação                                                \\
+    OGR     & Biblioteca para Dados Vetoriais (parte da GDAL)                           \\
+    OSGeo   & \emph{Open Source Geospatial Foundation}                                  \\
+    PyQGIS  & Interface de Programação Python para QGIS                                 \\
+    QGIS    & \emph{Quantum Geographic Information System}                              \\
+    RGB     & \emph{Red, Green, Blue}                                                   \\
+    RF      & Requisito Funcional                                                       \\
+    SIG     & Sistema de Informação Geográfica                                          \\
+    TCC     & Trabalho de Conclusão de Curso                                            \\
+    TIFF    & \emph{Tagged Image File Format}                                           \\
+    USP     & Universidade de São Paulo                                                 \\
+    VR      & \emph{Virtual Reality}                                                    \\
 \end{tabular}
 
-%\chapter*{Lista de símbolos}
-\disablenewpage{\chapter*{Lista de símbolos}}
-
-\begin{tabular}{rl}
-    $\omega$ & Frequência angular                \\
-    $\psi$   & Função de análise \emph{wavelet}  \\
-    $\Psi$   & Transformada de Fourier de $\psi$ \\
-\end{tabular}
+% Lista de símbolos removida
 
 % Quebra de página manual
 \clearpage
@@ -313,20 +318,21 @@ texto texto texto texto. Texto opcional.
 % pois o índice é opcional). É comum colocar esses itens no final do documento,
 % junto com o comando \printindex, mas em alguns casos isso torna necessário
 % executar texindy (ou makeindex) mais de uma vez, então colocar aqui é melhor.
-\index{Inglês|see{Língua estrangeira}}
-\index{Figuras|see{Floats}}
-\index{Tabelas|see{Floats}}
-\index{Código-fonte|see{Floats}}
-\index{Subcaptions|see{Subfiguras}}
-\index{Sublegendas|see{Subfiguras}}
-\index{Equações|see{Modo matemático}}
-\index{Fórmulas|see{Modo matemático}}
-\index{Rodapé, notas|see{Notas de rodapé}}
-\index{Captions|see{Legendas}}
-\index{Versão original|see{Tese/Dissertação, versões}}
-\index{Versão corrigida|see{Tese/Dissertação, versões}}
-\index{Palavras estrangeiras|see{Língua estrangeira}}
-\index{Floats!Algoritmo|see{Floats, ordem}}
+% Índice remissivo removido
+%\index{Inglês|see{Língua estrangeira}}
+%\index{Figuras|see{Floats}}
+%\index{Tabelas|see{Floats}}
+%\index{Código-fonte|see{Floats}}
+%\index{Subcaptions|see{Subfiguras}}
+%\index{Sublegendas|see{Subfiguras}}
+%\index{Equações|see{Modo matemático}}
+%\index{Fórmulas|see{Modo matemático}}
+%\index{Rodapé, notas|see{Notas de rodapé}}
+%\index{Captions|see{Legendas}}
+%\index{Versão original|see{Tese/Dissertação, versões}}
+%\index{Versão corrigida|see{Tese/Dissertação, versões}}
+%\index{Palavras estrangeiras|see{Língua estrangeira}}
+%\index{Floats!Algoritmo|see{Floats, ordem}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPÍTULOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -343,13 +349,11 @@ texto texto texto texto. Texto opcional.
 
 % A introdução não tem número de capítulo, então os cabeçalhos também não
 \pagestyle{unnumberedchapter}
-\input{conteudo/00-exemplo-introducao}
+\input{conteudo/00-introducao}
 \pagestyle{mainmatter}
-\input{conteudo/01-exemplo-normas-ime}
-\input{conteudo/02-exemplo-usando-o-modelo}
-\input{conteudo/03-exemplo-latex}
-\input{conteudo/04-exemplo-tutorial}
-\input{conteudo/05-exemplo-exemplos}
+\input{conteudo/01-referencial-teorico}
+\input{conteudo/02-estudo-de-caso}
+\input{conteudo/03-consideracoes-finais}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% APÊNDICES E ANEXOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -381,31 +385,20 @@ texto texto texto texto. Texto opcional.
 
 \pagestyle{appendix}
 
-\appendix
-
-% \addappheadtotoc acrescenta a palavra "Apêndice" ao sumário; se
-% só há apêndices, sem anexos, provavelmente não é necessário.
-\addappheadtotoc
-
-\input{conteudo/apendice-exemplo-faq}
-\par
-
-%%%% Anexos %%%%
-
-\cleardoublepage
-
-\pagestyle{appendix} % repete o anterior, caso você não use apêndices
-
-\annex
-
-% \addappheadtotoc acrescenta a palavra "Anexo" ao sumário; se
-% só há anexos, sem apêndices, provavelmente não é necessário.
-\addappheadtotoc
-
-\input{conteudo/anexo-exemplo-imegoodies}
-\par
-\input{conteudo/anexo-exemplo-pseudocodigo}
-\par
+% Apêndices e anexos removidos por enquanto
+% \appendix
+% \addappheadtotoc
+% \input{conteudo/apendice-exemplo-faq}
+% \par
+% 
+% \cleardoublepage
+% \pagestyle{appendix}
+% \annex
+% \addappheadtotoc
+% \input{conteudo/anexo-exemplo-imegoodies}
+% \par
+% \input{conteudo/anexo-exemplo-pseudocodigo}
+% \par
 
 
 %%%%%%%%%%%%%%% SEÇÕES FINAIS (BIBLIOGRAFIA E ÍNDICE REMISSIVO) %%%%%%%%%%%%%%%%
@@ -426,6 +419,6 @@ texto texto texto texto. Texto opcional.
     heading=bibintoc, % Inclui a bibliografia no sumário
 ]
 
-\printindex % imprime o índice remissivo no documento (opcional)
+%\printindex % imprime o índice remissivo no documento (opcional) - removido
 
 \end{document}

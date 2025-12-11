@@ -1,0 +1,75 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+%% ------------------------------------------------------------------------- %%
+
+% "\chapter" cria um capítulo com número e o coloca no sumário; "\chapter*"
+% cria um capítulo sem número e não o coloca no sumário. Caso você queira 
+% que a introdução seja não numerada mas que apareça no sumário, use 
+% "\chapter**{Introdução}".
+\chapter{Introdução}
+\label{cap:introducao}
+
+\enlargethispage{.5\baselineskip}
+
+O QGIS (anteriormente, Quantum GIS) é um Sistema de Informação Geográfica (SIG) distribuído como software livre, amplamente utilizado para visualização, edição, análise e publicação de dados geoespaciais. Desenvolvido por uma comunidade global de colaboradores, o QGIS é licenciado sob a GNU General Public License (GPL), o que garante que qualquer pessoa possa usar, modificar e distribuir o software livremente.
+
+O QGIS se destaca entre os SIG por ser uma alternativa robusta e gratuita a soluções proprietárias, especialmente ao ArcGIS (da Esri). Embora ArcGIS seja amplamente adotado por instituições governamentais e empresas e ofereça ferramentas avançadas integradas, o QGIS tem conquistado cada vez mais espaço pelo seu modelo de software livre, flexibilidade e comunidade ativa. A tabela abaixo resume algumas das principais diferenças entre o QGIS e o ArcGIS:
+
+\begin{table}[h]
+    \centering
+    \caption{Comparação entre QGIS e ArcGIS}
+    \label{tab:qgis-vs-arcgis}
+    \begin{tabular}{p{4cm}p{5cm}p{5cm}}
+        \toprule
+        \textbf{Aspecto}     & \textbf{QGIS}                                      & \textbf{ArcGIS}                                                     \\
+        \midrule
+        Licença              & GPL (Software livre)                               & Proprietária e paga                                                 \\
+        Custo                & Gratuito                                           & Alto custo de licenciamento                                         \\
+        Extensibilidade      & Altamente customizável com plugins em Python e C++ & Customizável, mas requer licenças adicionais para algumas extensões \\
+        Comunidade           & Comunidade global ativa e colaborativa             & Suporte profissional pago e fórum da Esri                           \\
+        Liberdade do usuário & Total controle sobre o código-fonte e os dados     & Restrição a formatos e integrações proprietárias                    \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Neste trabalho, aderindo ao objetivo de um trabalho de formatura supervisionado voltado à extensão, optamos por contribuir com um software livre tendo em vista o desenvolvimento do trabalho em conjunto com usuários reais. A metodologia adotada parte da identificação de uma necessidade concreta de usuários na comunidade acadêmica para, então, projetar e documentar uma nova funcionalidade que solucione um problema recorrente, reforçando a ponte entre a universidade e o desenvolvimento de ferramentas de uso público.
+
+A escolha pela contribuição ao QGIS, especificamente, dentre outros projetos de software livre, se justifica pela experiência prévia com esse ecossistema em projetos acadêmicos\footnote{A experiência com o QGIS foi adquirida durante a graduação em Arquitetura e Urbanismo — especialmente nas disciplinas de planejamento urbano — e no mestrado, quando o software foi utilizado para georreferenciamento e elaboração de mapas no contexto da pesquisa em História e Fundamentos da Arquitetura e do Urbanismo na FAUUSP. Essa experiência prática demonstrou o potencial do QGIS como ferramenta poderosa e acessível, além de facilitar o compartilhamento de material desenvolvido com colegas de grupo de pesquisa, despertando interesse pelo projeto também do ponto de vista do desenvolvimento.}. Essa experiência demonstrou o potencial do QGIS como ferramenta poderosa e acessível para uso em contextos acadêmicos diversos.
+
+A necessidade específica que norteia este trabalho foi identificada no contexto do projeto de doutorado de Juliana Orro Marquez~\citep{orro2025}, que investiga o uso de ambientes imersivos, baseados em Gêmeos Digitais, para aprimorar a tomada de decisão de gestores públicos em cenários de risco, como inundações. A pesquisa utiliza um ambiente de realidade virtual construído na plataforma Unity, com terrenos 3D modelados a partir de dados geoespaciais reais. Contudo, um obstáculo técnico significativo emergiu: a conversão de Modelos Digitais de Elevação (MDE), comumente armazenados no formato GeoTIFF, para o formato de terreno .raw, compatível com o Unity. Atualmente, esse processo é manual, dependente de ferramentas de linha de comando como a GDAL (Geospatial Data Abstraction Library), e exige um conhecimento técnico que representa uma barreira para pesquisadores de áreas não ligadas à computação.
+
+Diante dessa lacuna de interoperabilidade, este trabalho propõe o desenvolvimento de uma ferramenta integrada ao QGIS que automatize e simplifique essa conversão. A solução visa facilitar a integração entre dados geoespaciais e ambientes imersivos, reduzindo a complexidade técnica, minimizando erros e ampliando o acesso ao uso de dados reais na criação de cenários tridimensionais. Dessa forma, este trabalho contribui diretamente para a viabilidade, escalabilidade e reprodutibilidade do sistema imersivo desenvolvido no doutorado, ao mesmo tempo em que oferece ao ecossistema QGIS uma nova funcionalidade, reforçando a ponte entre as geotecnologias e a visualização interativa para a gestão pública.
+
+\section{Objetivos}
+\label{sec:objetivos}
+
+Buscamos desenvolver uma ferramenta para conversão de Modelos Digitais de Elevação (MDE) no formato GeoTIFF para o formato RAW, compatível com o Unity, a fim de facilitar a utilização de dados reais na construção de terrenos tridimensionais.
+
+Como objetivos específicos, este projeto busca:
+
+\begin{enumerate}
+    \item Revisar os formatos de dados utilizados em Modelos Digitais de Elevação (MDE), com ênfase no GeoTIFF e no RAW compatível com Unity.
+    \item Analisar as ferramentas existentes para conversão de arquivos geoespaciais e suas limitações em relação ao Unity.
+    \item Implementar um protótipo de conversor capaz de transformar arquivos GeoTIFF em arquivos RAW compatíveis com o sistema de terrenos do Unity.
+    \item Validar o funcionamento do conversor por meio da importação de terrenos reais no Unity e da comparação com os dados originais.
+    \item Documentar o processo de desenvolvimento e utilização da ferramenta, visando orientar futuros usuários.
+    \item Publicar os resultados na forma de plugin do QGIS.
+\end{enumerate}
+
+\section{Justificativa}
+\label{sec:justificativa}
+
+Em um panorama geral, pretende-se contribuir para a melhoria de um software livre amplamente utilizado na academia por grupos não necessariamente ligados à computação (geógrafos, urbanistas etc.), especialmente considerando-se que este trabalho se insere na disciplina de Trabalho de Conclusão de Curso voltado à extensão universitária (MAC0500).
+
+Considerando o caso escolhido para enfoque no projeto, a crescente complexidade dos desafios urbanos, como a gestão de riscos associados a eventos climáticos extremos, exige ferramentas cada vez mais sofisticadas para análise e tomada de decisão. Nesse contexto, os Gêmeos Digitais (Digital Twins) emergem como uma tecnologia promissora, permitindo a criação de réplicas virtuais de sistemas urbanos para simular cenários e avaliar o impacto de diferentes estratégias de gestão. Ambientes imersivos, como os de realidade virtual (VR), potencializam essa abordagem ao oferecer uma interface que fortalece a consciência situacional de gestores públicos.
+
+O projeto de doutorado ao qual este projeto pretende auxiliar investiga o uso de Gêmeos Digitais imersivos para aprimorar a análise de risco de inundações. A metodologia se baseia na construção de um ambiente virtual tridimensional no motor de jogos Unity, alimentado por dados geoespaciais reais, como Modelos Digitais de Elevação (MDE). A escolha do QGIS como plataforma base para a manipulação desses dados alinha-se a uma tendência global de aceitação crescente deste software na comunidade científica, cuja utilização tem registrado aumento expressivo em diferentes áreas do conhecimento~\citep{rosas2022}.
+
+Contudo, um obstáculo técnico significativo reside na interoperabilidade entre as ferramentas de SIG que manipulam os dados geográficos e os ambientes de desenvolvimento 3D. Atualmente, a conversão de dados de elevação no formato GeoTIFF para o formato .raw binário — compatível com o sistema de terreno do Unity — é um processo manual. Essa tarefa exige o uso de bibliotecas de linha de comando, como a Geospatial Data Abstraction Library (GDAL), e requer um conhecimento técnico específico que representa uma barreira para pesquisadores e profissionais de áreas não ligadas à computação. A dependência de um fluxo de trabalho manual não apenas desacelera a criação de cenários, mas também é suscetível a erros, comprometendo a fidelidade e a reprodutibilidade das simulações.
+
+Diante dessa lacuna, este trabalho propõe o desenvolvimento de uma ferramenta integrada ao QGIS que automatize a conversão de arquivos GeoTIFF para o formato .raw. A viabilidade desta proposta é sustentada pela arquitetura extensível do QGIS, que permite a criação de novas funcionalidades através de plugins~\citep{khan2018}. De fato, o sucesso e a popularidade do QGIS são amplamente influenciados pela sua extensibilidade e pela disseminação de estudos científicos sobre o desenvolvimento de plugins e suas aplicações em diversas áreas do conhecimento~\citep{rosas2022}.
+
+Dessa forma, a contribuição deste TCC é dupla: por um lado, desenvolve-se uma solução prática que fortalece a ponte entre geotecnologias e a visualização interativa 3D, com impacto direto na pesquisa sobre Gêmeos Digitais. Por outro, contribui-se para o ecossistema QGIS com uma nova funcionalidade, seguindo uma tradição de desenvolvimento colaborativo que é chave para o sucesso de softwares de código aberto~\citep{rosas2022}.
+
