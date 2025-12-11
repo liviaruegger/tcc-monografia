@@ -18,7 +18,7 @@ No entanto, esta abordagem foi descartada por apresentar limitações significat
 
 \subsection{Script do Processing Toolbox}
 
-Uma segunda alternativa explorada foi o desenvolvimento de um script simples para o \emph{QGIS Processing Toolbox}, que poderia ser executado diretamente sem a necessidade de criar um \emph{plugin} completo. Esta abordagem foi implementada como uma solução temporária e informal, servindo como protótipo para validar a lógica de conversão antes do desenvolvimento do \emph{plugin}.
+Uma segunda alternativa explorada foi o desenvolvimento de um script simples para o \emph{QGIS Processing Toolbox}, que poderia ser executado diretamente sem a necessidade de criar um \emph{plugin} completo. Esta abordagem foi implementada como uma solução de prototipagem rápida, servindo como protótipo de baixa fidelidade para validar a lógica de conversão antes do desenvolvimento do \emph{plugin}.
 
 O script demonstrou a viabilidade técnica da solução e permitiu testar os algoritmos de processamento, incluindo normalização de valores, tratamento de NoData e cálculo de dimensões. No entanto, scripts do \emph{Processing Toolbox} apresentam limitações em termos de interface de usuário, documentação e distribuição. A solução adotada, um \emph{plugin} completo, oferece melhor integração com o QGIS, interface gráfica mais robusta e facilita a distribuição através do repositório oficial de \emph{plugins}.
 
@@ -55,12 +55,12 @@ O Unity requer arquivos de \emph{heightmap} no formato Raw binário, que consist
 
 \begin{itemize}
   \item \textbf{Formato de dados}: 16-bit sem sinal (unsigned integer), com valores no intervalo de 0 a 65535
-  \item \textbf{Ordem de bytes}: Little-endian (Intel/Windows) ou Big-endian (Mac), configurável pelo usuário
+  \item \textbf{Ordem de bytes}: Padrão Little-endian (Intel/Windows) adotado para maximizar compatibilidade
   \item \textbf{Estrutura}: Matriz bidimensional de valores de elevação, armazenada linha por linha (row-major order)
   \item \textbf{Dimensões}: O arquivo deve ter dimensões quadradas ou retangulares, com resolução tipicamente em potências de 2 mais 1 (ex: 513×513, 1025×1025, 2049×2049)
 \end{itemize}
 
-Ao importar um arquivo Raw no Unity, o usuário deve fornecer manualmente os parâmetros de configuração, incluindo as dimensões do arquivo (largura × altura em pixels) e as dimensões físicas do terreno (X, Y, Z em metros), onde Y representa a faixa de elevação.
+Ao importar um arquivo .raw no Unity, o usuário deve fornecer manualmente os parâmetros de configuração, incluindo as dimensões do arquivo (largura × altura em pixels) e as dimensões físicas do terreno (X, Y, Z em metros), onde Y representa a faixa de elevação.
 
 \subsection{Requisitos técnicos da conversão}
 
@@ -96,7 +96,7 @@ Essas discussões, embora não constituam referências técnicas oficiais, confi
 
 Diante do obstáculo técnico que a conversão manual de dados de elevação representa, um processo que exige familiaridade com ferramentas de linha de comando (Command Line Interface -- CLI) como a GDAL e conhecimento sobre especificações de formatos de arquivo, propõe-se o desenvolvimento de um \emph{plugin} para o QGIS denominado \emph{Unity Terrain Exporter}.
 
-Este \emph{plugin} visa preencher a lacuna de interoperabilidade entre o ambiente de análise geoespacial (QGIS) e a plataforma de desenvolvimento de ambientes imersivos (Unity). A solução objetiva se apresentar como uma ferramenta com interface gráfica simples e específica (em oposição à funcionalidade genérica de \emph{Translate} da GDAL, mencionada na Seção~\ref{sec:qgis-gdal}), integrada diretamente ao QGIS. O objetivo principal é automatizar o fluxo de trabalho de conversão de um MDE no formato GeoTIFF para um arquivo de terreno no formato Raw (.raw), em conformidade com as especificações exigidas pelo motor de jogos Unity (16-bit, unsigned integer, com ordem de bytes selecionável).
+Este \emph{plugin} visa preencher a lacuna de interoperabilidade entre o ambiente de análise geoespacial (QGIS) e a plataforma de desenvolvimento de ambientes imersivos (Unity). A solução objetiva se apresentar como uma ferramenta com interface gráfica simples e específica (em oposição à funcionalidade genérica de \emph{Translate} da GDAL, mencionada na Seção~\ref{sec:qgis-gdal}), integrada diretamente ao QGIS. O objetivo principal é automatizar o fluxo de trabalho de conversão de um MDE no formato GeoTIFF para um arquivo de terreno no formato Raw (.raw), em conformidade com as especificações exigidas pelo motor de jogos Unity (16-bit, unsigned integer, com ordem de bytes Little-endian).
 
 Ao encapsular a complexidade do processo de conversão, o \emph{plugin} atuará como uma ponte, permitindo que pesquisadores, geógrafos, urbanistas e outros profissionais não especializados em computação possam gerar terrenos 3D realistas a partir de dados geoespaciais com autonomia e eficiência. A proposta não apenas soluciona uma necessidade direta do estudo de caso de doutorado em questão, mas também contribui para o ecossistema QGIS com uma ferramenta de nicho que fortalece a integração entre geotecnologias e a indústria de simulação e visualização em tempo real.
 
@@ -174,7 +174,7 @@ O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas princ
 
   \item \textbf{Seleção do MDE}: O usuário trabalha com dados geoespaciais já carregados no projeto QGIS, como ilustrado na Figura~\ref{fig:prova-2}, que mostra um exemplo de MDE em formato GeoTIFF.
 
-  \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário define o arquivo de saída (.raw). O plugin processa automaticamente o dado de entrada, realizando as seguintes operações:
+  \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário define o arquivo de saída (.raw). O \emph{plugin} processa automaticamente o dado de entrada, realizando as seguintes operações:
         \begin{itemize}
           \item Recorte para imagem quadrada (a partir do centro, utilizando a menor dimensão)
           \item Reprojeção automática para sistema de coordenadas Universal Transverse Mercator (UTM) apropriado
@@ -185,7 +185,7 @@ O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas princ
 
   \item \textbf{Feedback e logs}: O plugin apresenta logs detalhados da conversão (Figura~\ref{fig:prova-4}), incluindo informações sobre o processamento realizado e parâmetros sugeridos para importação no Unity.
 
-  \item \textbf{Visualização no Unity}: O usuário importa o arquivo .raw gerado no Unity, utilizando as configurações sugeridas pelo plugin, e visualiza o terreno 3D resultante, como demonstrado na Figura~\ref{fig:prova-5}.
+  \item \textbf{Visualização no Unity}: O usuário importa o arquivo .raw gerado no Unity, utilizando as configurações sugeridas pelo \emph{plugin}, e visualiza o terreno 3D resultante, como demonstrado na Figura~\ref{fig:prova-5}.
 \end{enumerate}
 
 \clearpage
@@ -260,12 +260,12 @@ A solução implementada inclui a detecção automática de valores NoData atrav
 
 \subsubsection{Problema dos cálculos de dimensões e logs informativos}
 
-Inicialmente, o plugin gerava apenas o arquivo Raw sem fornecer informações sobre como importá-lo corretamente no Unity. Usuários precisavam calcular manualmente as dimensões do terreno (X, Y, Z) e a resolução, o que exigia conhecimento sobre sistemas de coordenadas e as especificações do Unity.
+Inicialmente, o \emph{plugin} gerava apenas o arquivo .raw sem fornecer informações sobre como importá-lo corretamente no Unity. Usuários precisavam calcular manualmente as dimensões do terreno (X, Y, Z) e a resolução, o que exigia conhecimento sobre sistemas de coordenadas e as especificações do Unity.
 
 A solução implementada inclui o cálculo automático e a apresentação detalhada de todos os parâmetros necessários para a importação no Unity. O plugin gera logs que incluem:
 
 \begin{itemize}
-  \item \textbf{Resolução sugerida}: Dimensões do arquivo Raw (largura × altura em pixels), que devem ser inseridas no campo ``Resolution'' do Unity.
+  \item \textbf{Resolução sugerida}: Dimensões do arquivo .raw (largura × altura em pixels), que devem ser inseridas no campo ``Resolution'' do Unity.
   \item \textbf{Dimensões do terreno (X, Y, Z)}: Valores em metros que devem ser configurados no Unity, onde:
         \begin{itemize}
           \item X e Z correspondem às dimensões horizontais do terreno (largura e profundidade)
@@ -280,5 +280,5 @@ Esses logs são apresentados tanto na interface do QGIS quanto podem ser salvos 
 \subsection{Sobre o uso de ferramentas de IA assistida no desenvolvimento}
 \label{subsec:ia-desenvolvimento}
 
-A prova de conceito foi desenvolvida utilizando o Cursor, um editor de código com inteligência artificial integrada baseada em modelos de linguagem (LLM), seguindo práticas comuns na indústria de software atual. A ferramenta foi utilizada como acelerador do processo de desenvolvimento, com os cuidados necessários para garantir que os agentes de IA atuassem como assistentes no processo de codificação, e não como geradores de soluções completas sem supervisão adequada. Quando houve uso direto de IA para geração de código, isso foi explicitamente documentado nas mensagens de commit do repositório, especificando a ferramenta utilizada e o tipo de uso realizado, garantindo transparência no processo de desenvolvimento.
+A prova de conceito foi desenvolvida utilizando o Cursor, um editor de código com inteligência artificial integrada baseada em modelos de linguagem (LLM), seguindo práticas comuns na indústria de software atual. A ferramenta foi utilizada como acelerador do processo de desenvolvimento, com os cuidados necessários para garantir que os agentes de IA atuassem como assistentes no processo de codificação, e não como geradores de soluções completas sem supervisão adequada. É importante destacar que as decisões arquiteturais e os algoritmos implementados (como o cálculo do recorte quadrado, a lógica de reprojeção para UTM e o tratamento de valores NoData) foram decisões humanas, validadas e refinadas com o auxílio da IA. Quando houve uso direto de IA para geração de código, isso foi explicitamente documentado nas mensagens de commit do repositório, especificando a ferramenta utilizada e o tipo de uso realizado, garantindo transparência no processo de desenvolvimento.
 

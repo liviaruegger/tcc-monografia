@@ -26,9 +26,9 @@ A arquitetura do QGIS é um de seus maiores diferenciais, e reflete diretamente 
 O QGIS se posiciona como a principal alternativa livre ao ArcGIS, da empresa Esri, que é a maior organização na indústria de SIG. As diferenças fundamentais entre os dois softwares residem em seus modelos de licença, custo, plataforma e suporte~\citep{khan2018}.
 
 \begin{itemize}
-    \item \textbf{Custo e Licença:} O QGIS é um software livre e gratuito, distribuído sob a licença GNU General Public License (GPL). Esta licença garante aos usuários a liberdade de compartilhar e adaptar o software para qualquer finalidade, inclusive comercial. Em contrapartida, o ArcGIS é um produto de software proprietário com custos de licenciamento que podem variar de 2.500€ a 25.000€ por licença, além de taxas anuais de manutenção. O código-fonte do ArcGIS não é público e não pode ser utilizado para construir outras aplicações~\citep{khan2018}.
-    \item \textbf{Plataforma e Instalação:} O QGIS é multiplataforma, com versões para Windows, Mac OS X, Linux e BSD. O ArcGIS, por sua vez, é certificado apenas para sistemas operacionais Windows~\citep{khan2018}.
-    \item \textbf{Suporte e Comunidade:} O suporte para o ArcGIS é oferecido por meio de um sistema bem estabelecido de suporte técnico, fóruns e uma base de conhecimento, geralmente associado a custos. O QGIS, por outro lado, conta com o suporte de uma vasta comunidade global através de listas de e-mail, fóruns e chats online, além de empresas que oferecem suporte comercial~\citep{khan2018}.
+  \item \textbf{Custo e Licença:} O QGIS é um software livre e gratuito, distribuído sob a licença GNU General Public License (GPL). Esta licença garante aos usuários a liberdade de compartilhar e adaptar o software para qualquer finalidade, inclusive comercial. Em contrapartida, o ArcGIS é um produto de software proprietário com custos de licenciamento que podem variar de 2.500€ a 25.000€ por licença, além de taxas anuais de manutenção. O código-fonte do ArcGIS não é público e não pode ser utilizado para construir outras aplicações~\citep{khan2018}.
+  \item \textbf{Plataforma e Instalação:} O QGIS é multiplataforma, com versões para Windows, Mac OS X, Linux e BSD. O ArcGIS, por sua vez, é certificado apenas para sistemas operacionais Windows~\citep{khan2018}.
+  \item \textbf{Suporte e Comunidade:} O suporte para o ArcGIS é oferecido por meio de um sistema bem estabelecido de suporte técnico, fóruns e uma base de conhecimento, geralmente associado a custos. O QGIS, por outro lado, conta com o suporte de uma vasta comunidade global através de listas de e-mail, fóruns e chats online, além de empresas que oferecem suporte comercial~\citep{khan2018}.
 \end{itemize}
 
 \section{Geospatial Data Abstraction Library (GDAL)}
@@ -37,8 +37,8 @@ O QGIS se posiciona como a principal alternativa livre ao ArcGIS, da empresa Esr
 A Geospatial Data Abstraction Library (GDAL) é uma biblioteca de software livre que funciona como um tradutor para formatos de dados geoespaciais~\citep{khan2018}. Ela não é um software com interface gráfica, mas sim um poderoso motor de processamento que serve de base para inúmeras aplicações SIG e suas funcionalidades, incluindo o QGIS~\citep{khan2018}. A biblioteca é composta por:
 
 \begin{itemize}
-    \item \textbf{GDAL:} Focada em dados matriciais (raster), como Modelos Digitais de Elevação.
-    \item \textbf{OGR (OpenGIS Simple Features Reference Implementation):} Focada em dados vetoriais (pontos, linhas e polígonos).
+  \item \textbf{GDAL:} Focada em dados matriciais (raster), como Modelos Digitais de Elevação.
+  \item \textbf{OGR (OpenGIS Simple Features Reference Implementation):} Focada em dados vetoriais (pontos, linhas e polígonos).
 \end{itemize}
 
 \section{Integração entre QGIS e GDAL}
@@ -67,10 +67,10 @@ Para compreender o GeoTIFF, é preciso primeiro entender o formato TIFF. Desenvo
 O padrão GeoTIFF estabelece um método estruturado para embutir metadados geoespaciais complexos utilizando um pequeno número de tags TIFF. A mais importante delas é a GeoKeyDirectoryTag, que funciona como um diretório para um conjunto de ``chaves'' de metadados, conhecidas como GeoKeys. Cada GeoKey é um par de chave-valor que descreve um parâmetro específico do sistema de referência espacial da imagem. Através das GeoKeys, um arquivo GeoTIFF pode armazenar informações detalhadas, como:
 
 \begin{itemize}
-    \item \textbf{Sistema de Coordenadas de Referência (CRS):} Define o sistema de coordenadas no qual os dados estão representados (ex: WGS 84 / Universal Transverse Mercator (UTM) zona 23S).
-    \item \textbf{Projeção Cartográfica:} O tipo de projeção utilizada (ex: Transversa de Mercator).
-    \item \textbf{Datum e Elipsoide:} Os modelos geodésicos que definem a forma e o tamanho da Terra para o mapeamento.
-    \item \textbf{Unidades de Medida:} As unidades para as coordenadas e para os valores de elevação (ex: metros).
+  \item \textbf{Sistema de Coordenadas de Referência (CRS):} Define o sistema de coordenadas no qual os dados estão representados (ex: WGS 84 / Universal Transverse Mercator (UTM) zona 23S).
+  \item \textbf{Projeção Cartográfica:} O tipo de projeção utilizada (ex: Transversa de Mercator).
+  \item \textbf{Datum e Elipsoide:} Os modelos geodésicos que definem a forma e o tamanho da Terra para o mapeamento.
+  \item \textbf{Unidades de Medida:} As unidades para as coordenadas e para os valores de elevação (ex: metros).
 \end{itemize}
 
 Essa estrutura robusta garante que o arquivo seja inequivocamente georreferenciado, permitindo que softwares de SIG, como o QGIS, o posicionem corretamente no globo terrestre sem a necessidade de arquivos externos (como os ``world files'').
@@ -90,7 +90,7 @@ Em essência, um \emph{heightmap} no formato .raw para o Unity é um arquivo bin
 
 A principal característica (e o principal desafio) do formato .raw é a sua completa ausência de metadados. Diferentemente do GeoTIFF, que embute informações sobre suas dimensões, sistema de coordenadas e tipo de dados, o arquivo .raw é apenas um fluxo contínuo de bytes. Consequentemente, para que o Unity possa interpretar corretamente o arquivo, o usuário precisa fornecer manualmente, durante o processo de importação, parâmetros cruciais como a profundidade de bits (16-bit), as dimensões do mapa (largura e altura) e a ordem dos bytes (byte order ou endianness). A ordem dos bytes é particularmente importante, pois determina como os dois bytes de um inteiro de 16 bits são lidos, havendo uma distinção entre o padrão Windows (little-endian) e o padrão Mac (big-endian).
 
-Estruturalmente, este formato pode ser entendido como um caso específico do formato BIL (Band Interleaved by Line), porém contendo uma única banda de dados (a de elevação). Adicionalmente, para otimizar o desempenho do sistema de renderização, a documentação do Unity recomenda que as dimensões do \emph{heightmap} sigam o padrão de potência de dois mais um (ex: 257x257, 513x513, 1025x1025 ou 4097x4097 pixels).
+Estruturalmente, este formato pode ser entendido como um caso específico do formato BIL (Band Interleaved by Line), porém contendo uma única banda de dados (a de elevação). Adicionalmente, para otimizar o desempenho do sistema de renderização, a documentação do Unity recomenda que as dimensões do \emph{heightmap} sigam o padrão de potência de dois mais um (ex: 257x257, 513x513, 1025x1025 ou 4097x4097 pixels). É importante destacar que o \emph{plugin} desenvolvido neste trabalho não força essas dimensões específicas, mas sugere-as nos logs de saída, permitindo flexibilidade ao usuário.
 
 Em suma, o formato .raw do Unity é otimizado para simplicidade e performance de leitura pelo motor de jogos, sacrificando a portabilidade e a riqueza descritiva de formatos geoespaciais como o GeoTIFF. Essa troca justifica a necessidade de uma ferramenta intermediária, como a proposta neste trabalho, para realizar a conversão de forma controlada e precisa~\citep{unityHeightmaps}.
 
@@ -104,19 +104,19 @@ Segundo as especificações da Esri~\citep{arcgisBIL,arcgisBILExample}, o format
 A principal característica do formato BIL é a maneira como os dados dos pixels são organizados. A informação é armazenada banda por banda para cada linha (ou fileira) da imagem. Em um exemplo prático de uma imagem com três bandas espectrais (como Vermelho, Verde e Azul), o arquivo armazenaria primeiro todos os dados das três bandas para a linha 1, depois todos os dados das três bandas para a linha 2, e assim sucessivamente até a última linha da imagem. Por exemplo, a organização para uma imagem de n linhas e três bandas pode ser visualizada da seguinte forma:
 
 \begin{table}[h]
-    \centering
-    \caption{Organização dos dados no formato BIL para uma imagem com três bandas}
-    \label{tab:organizacao-bil}
-    \begin{tabular}{cl}
-        \toprule
-        \textbf{Linha} & \textbf{Organização dos dados}                           \\
-        \midrule
-        Linha 1        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
-        Linha 2        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
-        \ldots         & \ldots                                                   \\
-        Linha n        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
-        \bottomrule
-    \end{tabular}
+  \centering
+  \caption{Organização dos dados no formato BIL para uma imagem com três bandas}
+  \label{tab:organizacao-bil}
+  \begin{tabular}{cl}
+    \toprule
+    \textbf{Linha} & \textbf{Organização dos dados}                           \\
+    \midrule
+    Linha 1        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    Linha 2        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    \ldots         & \ldots                                                   \\
+    Linha n        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 Essa estrutura torna a leitura de perfis espaciais que envolvem todas as bandas de uma determinada área (abrangendo múltiplas linhas) relativamente eficiente.
@@ -124,36 +124,36 @@ Essa estrutura torna a leitura de perfis espaciais que envolvem todas as bandas 
 Essa organização de dados não inclui, no entanto, metadados que especifiquem a maneira de interpretá-la; por isso, um conjunto de dados BIL funcional é composto por, no mínimo, dois arquivos (.bil e .hdr), podendo incluir outros arquivos opcionais para funcionalidades adicionais (.clr, .stx). Em resumo:
 
 \begin{itemize}
-    \item \textbf{Arquivo de Dados (`.bil'):} É o arquivo binário que contém os valores brutos dos pixels da imagem, organizados conforme a estrutura de intercalação por linha descrita anteriormente.
-    \item \textbf{Arquivo de Cabeçalho (`.hdr'):} Este é um arquivo de texto ASCII obrigatório que descreve os atributos da imagem, como dimensões e formato dos dados. Sem ele, o software não consegue interpretar corretamente o arquivo binário. O cabeçalho contém entradas no formato \texttt{<keyword> <value>} (palavra-chave e valor), onde cada entrada define um parâmetro da imagem. As palavras-chave mais importantes incluem:
+  \item \textbf{Arquivo de Dados (`.bil'):} É o arquivo binário que contém os valores brutos dos pixels da imagem, organizados conforme a estrutura de intercalação por linha descrita anteriormente.
+  \item \textbf{Arquivo de Cabeçalho (`.hdr'):} Este é um arquivo de texto ASCII obrigatório que descreve os atributos da imagem, como dimensões e formato dos dados. Sem ele, o software não consegue interpretar corretamente o arquivo binário. O cabeçalho contém entradas no formato \texttt{<keyword> <value>} (palavra-chave e valor), onde cada entrada define um parâmetro da imagem. As palavras-chave mais importantes incluem:
 
-          \begin{table}[H]
-              \centering
-              \caption{Principais palavras-chave do arquivo de cabeçalho (.hdr) do formato BIL}
-              \label{tab:palavras-chave-hdr}
-              \begin{tabular}{lp{10cm}}
-                  \toprule
-                  \textbf{Palavra-chave} & \textbf{Descrição}                                                                                                                                   \\
-                  \midrule
-                  \texttt{nrows}         & O número total de linhas na imagem.                                                                                                                  \\
-                  \texttt{ncols}         & O número total de colunas na imagem.                                                                                                                 \\
-                  \texttt{nbands}        & O número de bandas espectrais.                                                                                                                       \\
-                  \texttt{nbits}         & O número de bits por pixel em cada banda (valores comuns são 8, 16 ou 32).                                                                           \\
-                  \texttt{layout}        & A organização das bandas, que neste caso seria \texttt{bil}.                                                                                         \\
-                  \texttt{skipbytes}     & O número de bytes no início do arquivo que devem ser ignorados, útil para pular cabeçalhos de outros formatos embutidos no próprio arquivo de dados. \\
-                  \bottomrule
-              \end{tabular}
-          \end{table}
-    \item \textbf{Arquivo de Cores (`.clr'):} Um arquivo opcional usado para atribuir uma paleta de cores a imagens de banda única (pseudocor). Se este arquivo estiver ausente, a imagem de banda única será exibida em tons de cinza. Ele mapeia valores de pixel a combinações de cores no modelo RGB (Vermelho, Verde, Azul). Este arquivo é ignorado em imagens multibanda.
-    \item \textbf{Arquivo de Estatísticas (`.stx'):} Também é um arquivo opcional que armazena estatísticas descritivas para cada banda da imagem, como valor mínimo, máximo, média e desvio padrão. Essas informações são frequentemente utilizadas para aplicar um realce de contraste linear, melhorando a visualização da imagem.
+        \begin{table}[H]
+          \centering
+          \caption{Principais palavras-chave do arquivo de cabeçalho (.hdr) do formato BIL}
+          \label{tab:palavras-chave-hdr}
+          \begin{tabular}{lp{10cm}}
+            \toprule
+            \textbf{Palavra-chave} & \textbf{Descrição}                                                                                                                                   \\
+            \midrule
+            \texttt{nrows}         & O número total de linhas na imagem.                                                                                                                  \\
+            \texttt{ncols}         & O número total de colunas na imagem.                                                                                                                 \\
+            \texttt{nbands}        & O número de bandas espectrais.                                                                                                                       \\
+            \texttt{nbits}         & O número de bits por pixel em cada banda (valores comuns são 8, 16 ou 32).                                                                           \\
+            \texttt{layout}        & A organização das bandas, que neste caso seria \texttt{bil}.                                                                                         \\
+            \texttt{skipbytes}     & O número de bytes no início do arquivo que devem ser ignorados, útil para pular cabeçalhos de outros formatos embutidos no próprio arquivo de dados. \\
+            \bottomrule
+          \end{tabular}
+        \end{table}
+  \item \textbf{Arquivo de Cores (`.clr'):} Um arquivo opcional usado para atribuir uma paleta de cores a imagens de banda única (pseudocor). Se este arquivo estiver ausente, a imagem de banda única será exibida em tons de cinza. Ele mapeia valores de pixel a combinações de cores no modelo RGB (Vermelho, Verde, Azul). Este arquivo é ignorado em imagens multibanda.
+  \item \textbf{Arquivo de Estatísticas (`.stx'):} Também é um arquivo opcional que armazena estatísticas descritivas para cada banda da imagem, como valor mínimo, máximo, média e desvio padrão. Essas informações são frequentemente utilizadas para aplicar um realce de contraste linear, melhorando a visualização da imagem.
 \end{itemize}
 
 Para o caso apresentado neste trabalho, o formato BIL é útil porque os arquivos de terreno aceitos pelo Unity (.raw) são, na prática, idênticos a um arquivo .bil de apenas uma banda (escala de cinza), de maneira que os outros arquivos, como o arquivo de cabeçalho, não são necessários. Por isso, um método comum utilizado por usuários que necessitam da conversão do GeoTIFF para o arquivo de terreno do Unity é:
 
 \begin{enumerate}
-    \item Converter o GeoTIFF para o formato BIL (isso pode ser executado utilizando a ferramenta de \emph{Translate} do QGIS);
-    \item Alterar a extensão do arquivo .bil para .raw;
-    \item Descartar quaisquer outros arquivos gerados no processo de conversão (.hdr etc).
+  \item Converter o GeoTIFF para o formato BIL (isso pode ser executado utilizando a ferramenta de \emph{Translate} do QGIS);
+  \item Alterar a extensão do arquivo .bil para .raw;
+  \item Descartar quaisquer outros arquivos gerados no processo de conversão (.hdr etc).
 \end{enumerate}
 
 
