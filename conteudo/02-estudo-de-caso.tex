@@ -33,45 +33,45 @@ Ao encapsular a complexidade do processo de conversão, o plugin atuará como um
 Os requisitos funcionais especificam o que o sistema deve ser capaz de fazer. Para capturar estes requisitos a partir da perspectiva do usuário final, foi utilizada a metodologia de Histórias de Usuário (\emph{User Stories}), que descrevem uma funcionalidade do software de forma simples e direta.
 
 \begin{table}[h]
-    \centering
-    \caption{História principal (Épico)}
-    \label{tab:epico}
-    \begin{tabular}{p{\textwidth}}
-        \toprule
-        Como uma pesquisadora que trabalha com ambientes digitais imersivos modelados no Unity, eu quero converter um arquivo GeoTIFF de elevação para um formato de terreno compatível com o Unity diretamente no QGIS, para que eu possa criar Modelos Digitais de Elevação (MDE) de forma rápida e sem a necessidade de conhecimento técnico avançado. \\
-        \bottomrule
-    \end{tabular}
+  \centering
+  \caption{História principal (Épico)}
+  \label{tab:epico}
+  \begin{tabular}{p{\textwidth}}
+    \toprule
+    Como uma pesquisadora que trabalha com ambientes digitais imersivos modelados no Unity, eu quero converter um arquivo GeoTIFF de elevação para um formato de terreno compatível com o Unity diretamente no QGIS, para que eu possa criar Modelos Digitais de Elevação (MDE) de forma rápida e sem a necessidade de conhecimento técnico avançado. \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 A partir deste épico, derivam-se as seguintes histórias de usuário detalhadas, que se traduzem em requisitos funcionais específicos para o plugin:
 
 \begin{table}[h]
-    \centering
-    \caption{Histórias de usuário detalhadas}
-    \label{tab:user-stories}
-    \begin{tabular}{p{5cm}p{9cm}}
-        \toprule
-        \textbf{História}                                & \textbf{Descrição}                                                                                                                                                                                                      \\
-        \midrule
-        \textit{Seleção do Dado de Entrada}              & Como usuário, eu quero selecionar uma camada raster (GeoTIFF) que já está aberta no meu projeto QGIS, para que eu não precise navegar por pastas do sistema novamente.                                                  \\
-        \textit{Definição do Arquivo de Saída}           & Como usuário, eu quero especificar o local e o nome do arquivo .raw que será gerado, para que eu possa organizar meus arquivos de projeto de maneira controlada.                                                        \\
-        \textit{Configuração Simplificada de Parâmetros} & Como usuário, eu quero que o plugin assuma as configurações técnicas complexas por padrão (como a conversão para 16-bit unsigned integer), para que eu não precise entender os detalhes do formato de arquivo do Unity. \\
-        \textit{Execução e Feedback}                     & Como usuário, eu quero clicar em um único botão para iniciar a conversão e receber uma notificação clara de sucesso ou de erro ao final do processo, para que eu saiba se o arquivo foi gerado corretamente.            \\
-        \bottomrule
-    \end{tabular}
+  \centering
+  \caption{Histórias de usuário detalhadas}
+  \label{tab:user-stories}
+  \begin{tabular}{p{5cm}p{9cm}}
+    \toprule
+    \textbf{História}                                & \textbf{Descrição}                                                                                                                                                                                                      \\
+    \midrule
+    \textit{Seleção do Dado de Entrada}              & Como usuário, eu quero selecionar uma camada raster (GeoTIFF) que já está aberta no meu projeto QGIS, para que eu não precise navegar por pastas do sistema novamente.                                                  \\
+    \textit{Definição do Arquivo de Saída}           & Como usuário, eu quero especificar o local e o nome do arquivo .raw que será gerado, para que eu possa organizar meus arquivos de projeto de maneira controlada.                                                        \\
+    \textit{Configuração Simplificada de Parâmetros} & Como usuário, eu quero que o plugin assuma as configurações técnicas complexas por padrão (como a conversão para 16-bit unsigned integer), para que eu não precise entender os detalhes do formato de arquivo do Unity. \\
+    \textit{Execução e Feedback}                     & Como usuário, eu quero clicar em um único botão para iniciar a conversão e receber uma notificação clara de sucesso ou de erro ao final do processo, para que eu saiba se o arquivo foi gerado corretamente.            \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 Com base nas histórias de usuário apresentadas, os seguintes requisitos funcionais (RF) são definidos para o plugin:
 
 \begin{enumerate}
-    \item[RF01] O sistema deve permitir que o usuário selecione uma camada raster ativa no painel de camadas do QGIS como dado de entrada.
-    \item[RF02] O sistema deve apresentar uma interface gráfica para que o usuário possa definir o caminho e o nome do arquivo de saída com a extensão .raw.
-    \item[RF03] O sistema deve, internamente, realizar a conversão do dado de entrada para o formato de 16-bit sem sinal (unsigned integer), que é o padrão exigido pelo Unity.
-    \item[RF04] Caso a camada de entrada contenha dados em ponto flutuante, o sistema deve aplicar uma normalização para escalar os valores de elevação para o intervalo de 0 a 65535.
-    \item[RF05] A interface deve oferecer ao usuário a opção de selecionar a ordem de bytes (byte order/endianness) do arquivo de saída (ex: ``Intel/Windows'' ou ``Mac'').
-    \item[RF06] O sistema deve exibir uma mensagem de confirmação ao usuário após a conclusão bem-sucedida da conversão.
-    \item[RF07] Em caso de falha (ex: camada de entrada inválida), o sistema deve exibir uma mensagem de erro informativa e de fácil compreensão.
-    \item[RF08] A funcionalidade de conversão deve ser acionada por meio de um botão (ex: ``Converter'' ou ``Executar'').
+  \item[RF01] O sistema deve permitir que o usuário selecione uma camada raster ativa no painel de camadas do QGIS como dado de entrada.
+  \item[RF02] O sistema deve apresentar uma interface gráfica para que o usuário possa definir o caminho e o nome do arquivo de saída com a extensão .raw.
+  \item[RF03] O sistema deve, internamente, realizar a conversão do dado de entrada para o formato de 16-bit sem sinal (unsigned integer), que é o padrão exigido pelo Unity.
+  \item[RF04] Caso a camada de entrada contenha dados em ponto flutuante, o sistema deve aplicar uma normalização para escalar os valores de elevação para o intervalo de 0 a 65535.
+  \item[RF05] A interface deve oferecer ao usuário a opção de selecionar a ordem de bytes (byte order/endianness) do arquivo de saída (ex: ``Intel/Windows'' ou ``Mac'').
+  \item[RF06] O sistema deve exibir uma mensagem de confirmação ao usuário após a conclusão bem-sucedida da conversão.
+  \item[RF07] Em caso de falha (ex: camada de entrada inválida), o sistema deve exibir uma mensagem de erro informativa e de fácil compreensão.
+  \item[RF08] A funcionalidade de conversão deve ser acionada por meio de um botão (ex: ``Converter'' ou ``Executar'').
 \end{enumerate}
 
 \subsection{Ferramentas existentes e arquitetura alternativa}
@@ -97,58 +97,72 @@ A arquitetura da solução conecta três ecossistemas principais: o QGIS, como a
 
 Uma prova de conceito funcional foi desenvolvida e está disponível publicamente no repositório GitHub: \url{https://github.com/liviaruegger/unity-terrain-exporter}. Esta implementação demonstra a viabilidade técnica da solução proposta e valida os requisitos funcionais estabelecidos.
 
-O fluxo de trabalho da prova de conceito pode ser dividido em quatro etapas principais, ilustradas na Figura~\ref{fig:prova-conceito}:
+O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas principais, ilustradas nas Figuras~\ref{fig:prova-1} a~\ref{fig:prova-5}:
 
 \begin{enumerate}
-    \item \textbf{Instalação e seleção de dados}: Após instalar o plugin no QGIS, o usuário seleciona uma camada raster (GeoTIFF) que já está aberta no projeto, eliminando a necessidade de navegar novamente pelo sistema de arquivos.
-    
-    \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada, o usuário define o arquivo de saída (.raw). O plugin processa automaticamente o dado de entrada, realizando as seguintes operações:
-    \begin{itemize}
-        \item Recorte e ajuste de resolução compatível com Unity
-        \item Normalização para 16-bit sem sinal (unsigned integer), preservando a faixa de elevação original
-        \item Detecção e exclusão automática de valores de padding/NoData
-        \item Cálculo correto das dimensões (X, Y, Z) considerando diferenças entre sistemas de coordenadas geográficos e projetados
-    \end{itemize}
-    
-    \item \textbf{Feedback e logs}: O plugin apresenta logs detalhados da conversão, incluindo informações sobre o processamento realizado e parâmetros sugeridos para importação no Unity.
-    
-    \item \textbf{Visualização no Unity}: O usuário importa o arquivo .raw gerado no Unity, utilizando as configurações sugeridas pelo plugin, e visualiza o terreno 3D resultante.
+  \item \textbf{Instalação e seleção de dados}: Após instalar o plugin no QGIS, o usuário seleciona uma camada raster (GeoTIFF) que já está aberta no projeto, eliminando a necessidade de navegar novamente pelo sistema de arquivos. A interface do plugin instalado é mostrada na Figura~\ref{fig:prova-1}.
+
+  \item \textbf{Seleção do MDE}: O usuário trabalha com dados geoespaciais já carregados no projeto QGIS, como ilustrado na Figura~\ref{fig:prova-2}, que mostra um exemplo de MDE em formato GeoTIFF.
+
+  \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário define o arquivo de saída (.raw). O plugin processa automaticamente o dado de entrada, realizando as seguintes operações:
+        \begin{itemize}
+          \item Recorte e ajuste de resolução compatível com Unity
+          \item Normalização para 16-bit sem sinal (unsigned integer), preservando a faixa de elevação original
+          \item Detecção e exclusão automática de valores de padding/NoData
+          \item Cálculo correto das dimensões (X, Y, Z) considerando diferenças entre sistemas de coordenadas geográficos e projetados
+        \end{itemize}
+
+  \item \textbf{Feedback e logs}: O plugin apresenta logs detalhados da conversão (Figura~\ref{fig:prova-4}), incluindo informações sobre o processamento realizado e parâmetros sugeridos para importação no Unity.
+
+  \item \textbf{Visualização no Unity}: O usuário importa o arquivo .raw gerado no Unity, utilizando as configurações sugeridas pelo plugin, e visualiza o terreno 3D resultante, como demonstrado na Figura~\ref{fig:prova-5}.
 \end{enumerate}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{poster/0_plugin_info}
-    \caption{Fluxo de trabalho da prova de conceito - Etapa 1: Plugin instalado. Após instalar o plugin, o usuário seleciona camada raster no QGIS.}
-    \label{fig:prova-1}
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textwidth]{poster/0_plugin_info}
+  \caption{Etapa 1: Plugin instalado. Após instalar o plugin, o usuário seleciona camada raster no QGIS.}
+  \label{fig:prova-1}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{poster/1_geotiff}
-    \caption{Fluxo de trabalho da prova de conceito - Etapa 2: MDE em GeoTIFF. O usuário trabalha com dados geoespaciais já carregados no projeto.}
-    \label{fig:prova-2}
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textwidth]{poster/1_geotiff}
+  \caption{Etapa 2: MDE em GeoTIFF. O usuário trabalha com dados geoespaciais já carregados no projeto.}
+  \label{fig:prova-2}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{poster/2_plugin_dialog}
-    \caption{Fluxo de trabalho da prova de conceito - Etapa 3: Processamento. Através de interface simplificada, o usuário define o arquivo de saída.}
-    \label{fig:prova-3}
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textwidth]{poster/2_plugin_dialog}
+  \caption{Etapa 3: Processamento. Através de interface simplificada, o usuário define o arquivo de saída.}
+  \label{fig:prova-3}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{poster/3_logs}
-    \caption{Fluxo de trabalho da prova de conceito - Etapa 4: Logs de conversão. O plugin processa automaticamente (recorte, normalização 16-bit, detecção de padding, cálculo de dimensões), gera arquivo .raw compatível e apresenta logs.}
-    \label{fig:prova-4}
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textwidth]{poster/3_logs}
+  \caption{Etapa 4: Logs de conversão. O plugin processa automaticamente (recorte, normalização 16-bit, detecção de padding, cálculo de dimensões), gera arquivo .raw compatível e apresenta logs.}
+  \label{fig:prova-4}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{poster/4_terrain}
-    \caption{Fluxo de trabalho da prova de conceito - Etapa 5: Terreno 3D (Unity). O usuário importa o arquivo .raw no Unity com as configurações sugeridas e visualiza o terreno 3D.}
-    \label{fig:prova-5}
+\clearpage
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textwidth]{poster/4_terrain}
+  \caption{Etapa 5: Terreno 3D (Unity). O usuário importa o arquivo .raw no Unity com as configurações sugeridas e visualiza o terreno 3D.}
+  \label{fig:prova-5}
 \end{figure}
+
+\clearpage
 
 A prova de conceito valida que a solução proposta atende aos requisitos funcionais estabelecidos, demonstrando que é possível automatizar o processo de conversão de MDEs do formato GeoTIFF para o formato RAW compatível com Unity, reduzindo significativamente a barreira técnica para pesquisadores não especializados em computação.
 

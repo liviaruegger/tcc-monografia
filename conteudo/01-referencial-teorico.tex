@@ -105,12 +105,21 @@ O formato BIL, sigla para \emph{Band Interleaved by Line} (Banda Intercalada por
 
 A principal característica do formato BIL é a maneira como os dados dos pixels são organizados. A informação é armazenada banda por banda para cada linha (ou fileira) da imagem. Em um exemplo prático de uma imagem com três bandas espectrais (como Vermelho, Verde e Azul), o arquivo armazenaria primeiro todos os dados das três bandas para a linha 1, depois todos os dados das três bandas para a linha 2, e assim sucessivamente até a última linha da imagem. Por exemplo, a organização para uma imagem de n linhas e três bandas pode ser visualizada da seguinte forma:
 
-\begin{itemize}
-  \item Linha 1: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
-  \item Linha 2: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
-  \item \ldots
-  \item Linha n: [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3]
-\end{itemize}
+\begin{table}[h]
+  \centering
+  \caption{Organização dos dados no formato BIL para uma imagem com três bandas}
+  \label{tab:organizacao-bil}
+  \begin{tabular}{cl}
+    \toprule
+    \textbf{Linha} & \textbf{Organização dos dados}                           \\
+    \midrule
+    Linha 1        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    Linha 2        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    \ldots         & \ldots                                                   \\
+    Linha n        & [Dados da Banda 1] [Dados da Banda 2] [Dados da Banda 3] \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 Essa estrutura torna a leitura de perfis espaciais que envolvem todas as bandas de uma determinada área (abrangendo múltiplas linhas) relativamente eficiente.
 
@@ -119,14 +128,24 @@ Essa organização de dados não inclui, no entanto, metadados que especifiquem 
 \begin{itemize}
   \item \textbf{Arquivo de Dados (`.bil'):} É o arquivo binário que contém os valores brutos dos pixels da imagem, organizados conforme a estrutura de intercalação por linha descrita anteriormente.
   \item \textbf{Arquivo de Cabeçalho (`.hdr'):} Este é um arquivo de texto ASCII obrigatório que descreve os atributos da imagem, como dimensões e formato dos dados. Sem ele, o software não consegue interpretar corretamente o arquivo binário. O cabeçalho contém entradas no formato \texttt{<keyword> <value>} (palavra-chave e valor), onde cada entrada define um parâmetro da imagem. As palavras-chave mais importantes incluem:
-        \begin{itemize}
-          \item \texttt{nrows}: O número total de linhas na imagem.
-          \item \texttt{ncols}: O número total de colunas na imagem.
-          \item \texttt{nbands}: O número de bandas espectrais.
-          \item \texttt{nbits}: O número de bits por pixel em cada banda (valores comuns são 8, 16 ou 32).
-          \item \texttt{layout}: A organização das bandas, que neste caso seria \texttt{bil}.
-          \item \texttt{skipbytes}: O número de bytes no início do arquivo que devem ser ignorados, útil para pular cabeçalhos de outros formatos embutidos no próprio arquivo de dados.
-        \end{itemize}
+
+        \begin{table}[H]
+          \centering
+          \caption{Principais palavras-chave do arquivo de cabeçalho (.hdr) do formato BIL}
+          \label{tab:palavras-chave-hdr}
+          \begin{tabular}{lp{10cm}}
+            \toprule
+            \textbf{Palavra-chave} & \textbf{Descrição}                                                                                                                                   \\
+            \midrule
+            \texttt{nrows}         & O número total de linhas na imagem.                                                                                                                  \\
+            \texttt{ncols}         & O número total de colunas na imagem.                                                                                                                 \\
+            \texttt{nbands}        & O número de bandas espectrais.                                                                                                                       \\
+            \texttt{nbits}         & O número de bits por pixel em cada banda (valores comuns são 8, 16 ou 32).                                                                           \\
+            \texttt{layout}        & A organização das bandas, que neste caso seria \texttt{bil}.                                                                                         \\
+            \texttt{skipbytes}     & O número de bytes no início do arquivo que devem ser ignorados, útil para pular cabeçalhos de outros formatos embutidos no próprio arquivo de dados. \\
+            \bottomrule
+          \end{tabular}
+        \end{table}
   \item \textbf{Arquivo de Cores (`.clr'):} Um arquivo opcional usado para atribuir uma paleta de cores a imagens de banda única (pseudocor). Se este arquivo estiver ausente, a imagem de banda única será exibida em tons de cinza. Ele mapeia valores de pixel a combinações de cores no modelo RGB (Vermelho, Verde, Azul). Este arquivo é ignorado em imagens multibanda.
   \item \textbf{Arquivo de Estatísticas (`.stx'):} Também é um arquivo opcional que armazena estatísticas descritivas para cada banda da imagem, como valor mínimo, máximo, média e desvio padrão. Essas informações são frequentemente utilizadas para aplicar um realce de contraste linear, melhorando a visualização da imagem.
 \end{itemize}

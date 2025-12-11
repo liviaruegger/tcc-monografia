@@ -48,6 +48,7 @@
 % também define os comandos para capa, folha de rosto etc.
 \usepackage{imegoodies}
 \usepackage[thesis]{imelooks}
+\usepackage{float}
 
 %\nocolorlinks % para impressão em P&B
 
@@ -264,28 +265,28 @@
 \disablenewpage{\chapter*{Lista de abreviaturas}}
 
 \begin{tabular}{rl}
-    API     & \emph{Application Programming Interface}                                  \\
-    BIL     & \emph{Band Interleaved by Line}                                           \\
-    CLI     & \emph{Command Line Interface}                                             \\
-    CRS     & \emph{Coordinate Reference System} (Sistema de Coordenadas de Referência) \\
-    FAUUSP  & Faculdade de Arquitetura e Urbanismo da Universidade de São Paulo         \\
-    GDAL    & \emph{Geospatial Data Abstraction Library}                                \\
-    GIS     & \emph{Geographic Information System} (Sistema de Informação Geográfica)   \\
-    GPL     & \emph{GNU General Public License}                                         \\
-    IME     & Instituto de Matemática e Estatística                                     \\
-    MAC0500 & Trabalho de Formatura Supervisionado Voltado à Extensão                   \\
-    MDE     & Modelo Digital de Elevação                                                \\
-    OGR     & Biblioteca para Dados Vetoriais (parte da GDAL)                           \\
-    OSGeo   & \emph{Open Source Geospatial Foundation}                                  \\
-    PyQGIS  & Interface de Programação Python para QGIS                                 \\
-    QGIS    & \emph{Quantum Geographic Information System}                              \\
-    RGB     & \emph{Red, Green, Blue}                                                   \\
-    RF      & Requisito Funcional                                                       \\
-    SIG     & Sistema de Informação Geográfica                                          \\
-    TCC     & Trabalho de Conclusão de Curso                                            \\
-    TIFF    & \emph{Tagged Image File Format}                                           \\
-    USP     & Universidade de São Paulo                                                 \\
-    VR      & \emph{Virtual Reality}                                                    \\
+  API     & \emph{Application Programming Interface}                                  \\
+  BIL     & \emph{Band Interleaved by Line}                                           \\
+  CLI     & \emph{Command Line Interface}                                             \\
+  CRS     & \emph{Coordinate Reference System} (Sistema de Coordenadas de Referência) \\
+  FAUUSP  & Faculdade de Arquitetura e Urbanismo da Universidade de São Paulo         \\
+  GDAL    & \emph{Geospatial Data Abstraction Library}                                \\
+  GIS     & \emph{Geographic Information System} (Sistema de Informação Geográfica)   \\
+  GPL     & \emph{GNU General Public License}                                         \\
+  IME     & Instituto de Matemática e Estatística                                     \\
+  MAC0500 & Trabalho de Formatura Supervisionado Voltado à Extensão                   \\
+  MDE     & Modelo Digital de Elevação                                                \\
+  OGR     & Biblioteca para Dados Vetoriais (parte da GDAL)                           \\
+  OSGeo   & \emph{Open Source Geospatial Foundation}                                  \\
+  PyQGIS  & Interface de Programação Python para QGIS                                 \\
+  QGIS    & \emph{Quantum Geographic Information System}                              \\
+  RGB     & \emph{Red, Green, Blue}                                                   \\
+  RF      & Requisito Funcional                                                       \\
+  SIG     & Sistema de Informação Geográfica                                          \\
+  TCC     & Trabalho de Conclusão de Curso                                            \\
+  TIFF    & \emph{Tagged Image File Format}                                           \\
+  USP     & Universidade de São Paulo                                                 \\
+  VR      & \emph{Virtual Reality}                                                    \\
 \end{tabular}
 
 % Lista de símbolos removida
@@ -414,9 +415,9 @@
 % A bibliografia é obrigatória
 
 \printbibliography[
-    title=\refname\label{sec:bib}, % "Referências", recomendado pela ABNT
-    %title=\bibname\label{sec:bib}, % "Bibliografia"
-    heading=bibintoc, % Inclui a bibliografia no sumário
+  title=\refname\label{sec:bib}, % "Referências", recomendado pela ABNT
+  %title=\bibname\label{sec:bib}, % "Bibliografia"
+  heading=bibintoc, % Inclui a bibliografia no sumário
 ]
 
 %\printindex % imprime o índice remissivo no documento (opcional) - removido
