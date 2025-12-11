@@ -99,7 +99,7 @@ Em suma, o formato .raw do Unity é otimizado para simplicidade e performance de
 
 Diversas soluções comumente utilizadas para o problema da conversão de um arquivo no formato GeoTIFF para o arquivo de terreno do Unity (.raw) envolvem uma conversão intermediária para um arquivo BIL (.bil).
 
-O formato BIL, sigla para \emph{Band Interleaved by Line} (Banda Intercalada por Linha), é um método para organizar dados de imagens multibanda. É importante ressaltar que o BIL não é um formato de imagem em si, mas sim um esquema de armazenamento para os valores de pixel de uma imagem dentro de um arquivo binário. Este método é capaz de manipular dados de imagens monocromáticas, em tons de cinza, pseudo cor, cor real e multiespectrais. Para que os dados sejam interpretados corretamente, um arquivo .bil deve ser acompanhado por um arquivo de cabeçalho (.hdr) em formato ASCII.
+Segundo as especificações da Esri~\citep{arcgisBIL,arcgisBILExample}, o formato BIL, sigla para \emph{Band Interleaved by Line} (Banda Intercalada por Linha), é um método para organizar dados de imagens multibanda. É importante ressaltar que o BIL não é um formato de imagem em si, mas sim um esquema de armazenamento para os valores de pixel de uma imagem dentro de um arquivo binário. Este método é capaz de manipular dados de imagens monocromáticas, em tons de cinza, pseudo cor, cor real e multiespectrais. Para que os dados sejam interpretados corretamente, um arquivo .bil deve ser acompanhado por um arquivo de cabeçalho (.hdr) em formato ASCII.
 
 A principal característica do formato BIL é a maneira como os dados dos pixels são organizados. A informação é armazenada banda por banda para cada linha (ou fileira) da imagem. Em um exemplo prático de uma imagem com três bandas espectrais (como Vermelho, Verde e Azul), o arquivo armazenaria primeiro todos os dados das três bandas para a linha 1, depois todos os dados das três bandas para a linha 2, e assim sucessivamente até a última linha da imagem. Por exemplo, a organização para uma imagem de n linhas e três bandas pode ser visualizada da seguinte forma:
 
@@ -156,5 +156,4 @@ Para o caso apresentado neste trabalho, o formato BIL é útil porque os arquivo
   \item Descartar quaisquer outros arquivos gerados no processo de conversão (.hdr etc).
 \end{enumerate}
 
-Para mais detalhes sobre o formato BIL, consulte~\citep{arcgisBIL,arcgisBILExample}.
 
