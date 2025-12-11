@@ -5,5 +5,32 @@
 \chapter{Considerações finais}
 \label{cap:consideracoes-finais}
 
-% TODO: Conteúdo a ser desenvolvido
+Este trabalho de conclusão de curso, desenvolvido no contexto da extensão universitária, teve como objetivo contribuir para o ecossistema de software livre em geotecnologias através do desenvolvimento de uma ferramenta que facilita a integração entre dados geoespaciais e ambientes de visualização 3D. A experiência de desenvolvimento do plugin \emph{Unity Terrain Exporter} proporcionou aprendizados significativos tanto do ponto de vista técnico quanto do ponto de vista da contribuição para projetos de código aberto.
 
+\section{Reflexões sobre o desenvolvimento}
+
+O processo de desenvolvimento deste trabalho revelou a complexidade inerente ao trabalho com dados geoespaciais e a diversidade de padrões de arquivo existentes. A necessidade de compreender profundamente as especificações técnicas de formatos como GeoTIFF, os requisitos específicos do Unity para arquivos de terreno, e as nuances de sistemas de coordenadas (geográficos versus projetados) destacou a importância de uma base teórica sólida antes da implementação prática. A conversão aparentemente simples de um formato para outro revelou-se um processo que envolve múltiplas etapas: recorte, reprojeção, normalização, tratamento de valores ausentes e cálculo preciso de dimensões.
+
+Essa complexidade técnica, no entanto, não deve ser uma barreira para usuários finais. Um dos principais objetivos alcançados foi justamente abstrair essa complexidade através de uma interface gráfica intuitiva, permitindo que pesquisadores e profissionais de áreas não ligadas à computação possam realizar conversões de dados geoespaciais para ambientes 3D sem necessidade de conhecimento técnico avançado sobre especificações de formato ou ferramentas de linha de comando.
+
+\section{A arquitetura extensível do QGIS e a facilidade de contribuição}
+
+A escolha pela arquitetura de plugins do QGIS demonstrou-se acertada em múltiplos aspectos. A estrutura modular e extensível do QGIS, que privilegia a criação de funcionalidades especializadas através de plugins~\citep{qgisPlugins}, facilitou significativamente o processo de desenvolvimento e contribuição. A documentação abrangente da API PyQGIS, as convenções estabelecidas pela comunidade e a integração com o Processing Framework permitiram que a solução fosse desenvolvida de forma estruturada e alinhada com as práticas do ecossistema.
+
+Além disso, a arquitetura de plugins do QGIS oferece vantagens significativas para a distribuição e compartilhamento de soluções. A possibilidade de publicar plugins no repositório oficial do QGIS torna as ferramentas facilmente acessíveis a toda a comunidade de usuários, que podem instalá-las diretamente através da interface nativa de gerenciamento de plugins. Essa facilidade de distribuição e instalação é um diferencial importante em relação a soluções standalone ou scripts isolados, que exigem configuração manual e conhecimento técnico para utilização.
+
+A experiência de desenvolvimento neste trabalho reforçou a percepção de que a arquitetura extensível do QGIS não apenas facilita a contribuição individual, mas também promove um ecossistema colaborativo onde soluções especializadas podem ser desenvolvidas, compartilhadas e aprimoradas pela comunidade. Essa característica é fundamental para o sucesso e a evolução contínua do QGIS como alternativa robusta a soluções proprietárias.
+
+\section{Próximos passos}
+
+A prova de conceito desenvolvida demonstrou a viabilidade técnica da solução proposta e validou os requisitos funcionais estabelecidos. O código-fonte está disponível publicamente no repositório GitHub~\footnote{Disponível em: \url{https://github.com/liviaruegger/unity-terrain-exporter}}, permitindo que a comunidade possa acessar, utilizar e contribuir com o projeto.
+
+O próximo passo natural seria a publicação do plugin no repositório oficial de plugins do QGIS, tornando-o disponível para instalação direta através da interface nativa do software. No entanto, é importante destacar que o QGIS oferece alternativas flexíveis para a distribuição de plugins, incluindo a instalação manual através de arquivos ZIP, o que permite que usuários interessados possam utilizar a ferramenta mesmo antes de uma eventual publicação oficial. Essa flexibilidade é valiosa para permitir testes e validação pela comunidade antes de um processo formal de publicação.
+
+Além da publicação, trabalhos futuros poderiam incluir melhorias na interface de usuário, suporte a formatos adicionais de saída, otimizações de performance para datasets muito grandes, e a incorporação de feedback da comunidade de usuários para refinar funcionalidades existentes.
+
+\section{Contribuição para a extensão universitária}
+
+Este trabalho, desenvolvido no contexto da disciplina de Trabalho de Formatura Supervisionado Voltado à Extensão (MAC0500), buscou concretizar os objetivos de extensão universitária através da identificação de uma necessidade real da comunidade acadêmica e do desenvolvimento de uma solução prática que beneficia tanto pesquisadores quanto a comunidade mais ampla de usuários de software livre em geotecnologias.
+
+A contribuição para o ecossistema QGIS reforça a ponte entre a universidade e o desenvolvimento de ferramentas de uso público, demonstrando como projetos acadêmicos podem gerar impacto prático e duradouro. A escolha por software livre e código aberto garante que a solução desenvolvida permaneça acessível e possa ser aprimorada pela comunidade, alinhando-se com os princípios de colaboração e compartilhamento de conhecimento que são fundamentais tanto para a extensão universitária quanto para o movimento de software livre.
