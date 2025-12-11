@@ -1,0 +1,31 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+\chapter{Script prototípico do Processing Toolbox}
+\label{apendice:script-prototipo}
+
+Este apêndice apresenta o código do script prototípico desenvolvido para o QGIS Processing Toolbox, que serviu como validação inicial da lógica de conversão antes do desenvolvimento do plugin completo. O script demonstra os algoritmos fundamentais de processamento, incluindo normalização de valores, tratamento de padding e cálculo de dimensões.
+
+O script foi implementado como uma ferramenta do Processing Framework do QGIS, permitindo execução direta através da interface de processamento. Embora funcional, esta solução apresenta limitações em termos de interface de usuário e distribuição quando comparada ao plugin completo desenvolvido posteriormente.
+
+O código apresentado foi desenvolvido a partir do template oficial do QGIS para algoritmos de processamento~\citep{qgisPlugins}, adaptando a estrutura documentada do template para incorporar a lógica específica de conversão de dados geoespaciais. A estrutura segue as convenções estabelecidas pelo QGIS, mantendo a documentação e os padrões de código do template original, enquanto integra as funções auxiliares e a lógica de processamento desenvolvidas durante a fase de prototipagem.
+
+\begin{programruledcaption}{Script prototípico para conversão de GeoTIFF para Unity RAW.\label{lst:script-prototipo}}
+  \lstinputlisting[
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\scriptsize\ttfamily,
+    showstringspaces=false,
+    tabsize=4,
+    xleftmargin=0.3cm,
+    xrightmargin=0.3cm,
+    columns=flexible,
+    keepspaces=true
+  ]{conteudo/codigo/script-prototipo.py}
+\end{programruledcaption}
+
