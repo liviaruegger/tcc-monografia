@@ -8,8 +8,6 @@
 \section{QGIS}
 \label{sec:qgis}
 
-% TODO: esta seção ainda precisa de bastante desenvolvimento
-
 O QGIS é um Sistema de Informação Geográfica (SIG) livre, gratuito e multiplataforma, que suporta a visualização, edição e análise de dados geoespaciais. Sendo o software geoespacial livre mais popular do mundo, o QGIS pertence à Open Source Geospatial Foundation (OSGeo) e é mantido por uma crescente comunidade de usuários e desenvolvedores~\citep{khan2018,rosas2022}.
 
 \subsection{Breve Histórico}
@@ -46,9 +44,9 @@ A Geospatial Data Abstraction Library (GDAL) é uma biblioteca de software livre
 \section{Integração entre QGIS e GDAL}
 \label{sec:qgis-gdal}
 
-% TODO: Escrever sobre o GDAL Tools, que fazia parte da biblioteca de plugins antes da integração no QGIS Processing Toolbox (GDAL Provider) a partir da versão 3.0
-
 A integração entre QGIS e GDAL é fundacional; o QGIS utiliza a biblioteca GDAL/OGR para ler e escrever a grande maioria dos formatos de dados que suporta. É graças a essa integração que o QGIS consegue trabalhar com uma vasta gama de formatos, incluindo, em 2014, 133 formatos raster e 79 formatos vetoriais suportados pela GDAL. O formato vetorial mais comum, o Shapefile [.shp] da Esri, é também o formato padrão utilizado no QGIS~\citep{khan2018}.
+
+A partir da versão 3.0 do QGIS, as funcionalidades da GDAL foram integradas diretamente ao \emph{QGIS Processing Framework} através do \emph{GDAL Provider}, consolidando ferramentas que anteriormente eram disponibilizadas como plugins separados (como o GDAL Tools). Essa integração facilitou o acesso às capacidades da GDAL através da interface nativa de processamento do QGIS, mantendo a flexibilidade e poder da biblioteca subjacente.
 
 Muitas das ferramentas de geoprocessamento disponíveis no QGIS são, na prática, interfaces gráficas que executam comandos da GDAL nos bastidores. No entanto, embora a GDAL possua a capacidade de realizar a conversão de GeoTIFF para .raw, essa funcionalidade não está exposta de forma direta e intuitiva na interface do QGIS para o fim específico de compatibilidade com o Unity. O projeto proposto neste TCC visa, portanto, criar uma interface amigável dentro do QGIS que utilize o poder da GDAL de forma estruturada, abstraindo a complexidade da linha de comando e garantindo que os parâmetros corretos sejam aplicados para a geração de um arquivo válido para o motor de jogos.
 
