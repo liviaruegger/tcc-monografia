@@ -170,8 +170,22 @@ O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas princ
 
 \begin{enumerate}
   \item \textbf{Instalação do plugin}: Através do \emph{Plugin Manager} ("Plugins" $\rightarrow$ "Manage and Install Plugins..."), o usuário pode instalar o \emph{plugin} (a partir de um ZIP ou do repositório oficial) e visualizar seus metadados (Figura~\ref{fig:prova-1}).
+  
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{poster/0_plugin_info}
+  \caption{Etapa 1: Plugin instalado. Após instalar o plugin, o usuário seleciona camada raster no QGIS.}
+  \label{fig:prova-1}
+\end{figure}
 
   \item \textbf{Seleção do MDE}: O usuário trabalha com dados geoespaciais já carregados no projeto QGIS, como ilustrado na Figura~\ref{fig:prova-2}, que mostra um exemplo de MDE em formato GeoTIFF.
+  
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{poster/1_geotiff}
+  \caption{Etapa 2: MDE em GeoTIFF. O usuário trabalha com dados geoespaciais já carregados no projeto.}
+  \label{fig:prova-2}
+\end{figure}
 
   \item \textbf{Configuração e processamento}: Através de uma interface gráfica simplificada (Figura~\ref{fig:prova-3}), o usuário seleciona uma camada raster (GeoTIFF) que já está aberta no projeto, eliminando a necessidade de navegar novamente pelo sistema de arquivos; o usuário, então, define o arquivo de saída (Raw). O \emph{plugin} processa automaticamente o dado de entrada, realizando as seguintes operações:
         \begin{itemize}
@@ -181,58 +195,33 @@ O fluxo de trabalho da prova de conceito pode ser dividido em cinco etapas princ
           \item Tratamento de valores NoData, excluindo-os do cálculo da faixa de elevação
           \item Cálculo correto das dimensões (X, Y, Z) considerando diferenças entre sistemas de coordenadas geográficos e projetados
         \end{itemize}
-
-  \item \textbf{Feedback e logs}: O plugin apresenta logs detalhados da conversão (Figura~\ref{fig:prova-4}), incluindo informações sobre o processamento realizado e parâmetros sugeridos para importação no Unity.
-
-  \item \textbf{Visualização no Unity}: O usuário importa o arquivo Raw gerado no Unity, utilizando as configurações sugeridas pelo \emph{plugin}, e visualiza o terreno 3D resultante, como demonstrado na Figura~\ref{fig:prova-5}.
-\end{enumerate}
-
-\clearpage
-
-\begin{figure}[p]
+        
+\begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{poster/0_plugin_info}
-  \caption{Etapa 1: Plugin instalado. Após instalar o plugin, o usuário seleciona camada raster no QGIS.}
-  \label{fig:prova-1}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=0.9\textwidth]{poster/1_geotiff}
-  \caption{Etapa 2: MDE em GeoTIFF. O usuário trabalha com dados geoespaciais já carregados no projeto.}
-  \label{fig:prova-2}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=0.9\textwidth]{poster/2_plugin_dialog}
+  \includegraphics[width=0.6\textwidth]{poster/2_plugin_dialog}
   \caption{Etapa 3: Processamento. Através de interface simplificada, o usuário define o arquivo de saída.}
   \label{fig:prova-3}
 \end{figure}
 
-\clearpage
+  \item \textbf{Feedback e logs}: O plugin apresenta logs detalhados da conversão (Figura~\ref{fig:prova-4}), incluindo informações sobre o processamento realizado e parâmetros sugeridos para importação no Unity.
 
-\begin{figure}[p]
+\begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{poster/3_logs}
+  \includegraphics[width=0.6\textwidth]{poster/3_logs}
   \caption{Etapa 4: Logs de conversão. O \emph{plugin} processa automaticamente (recorte quadrado, reprojeção UTM, normalização 16-bit, tratamento de NoData, cálculo de dimensões), gera arquivo Raw compatível e apresenta logs.}
   \label{fig:prova-4}
 \end{figure}
 
-\clearpage
-
-\begin{figure}[p]
+  \item \textbf{Visualização no Unity}: O usuário importa o arquivo Raw gerado no Unity, utilizando as configurações sugeridas pelo \emph{plugin}, e visualiza o terreno 3D resultante, como demonstrado na Figura~\ref{fig:prova-5}.
+  
+\begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{poster/4_terrain}
+  \includegraphics[width=0.6\textwidth]{poster/4_terrain}
   \caption{Etapa 5: Terreno 3D (Unity). O usuário importa o arquivo Raw no Unity com as configurações sugeridas e visualiza o terreno 3D.}
   \label{fig:prova-5}
 \end{figure}
 
-\clearpage
+\end{enumerate}
 
 A prova de conceito valida que a solução proposta atende aos requisitos funcionais estabelecidos, demonstrando que é possível automatizar o processo de conversão de MDEs do formato GeoTIFF para o formato Raw compatível com Unity, reduzindo significativamente a barreira técnica encontrada.
 
